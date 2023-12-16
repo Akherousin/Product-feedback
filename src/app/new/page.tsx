@@ -1,13 +1,13 @@
 import Button from '@/components/Button';
 import CreateRequestForm from '@/components/CreateRequestForm';
-import { type CSSProperties } from 'react';
+import paths from '@/paths';
 
 export default async function NewRequest() {
   return (
     <>
       <header>
         <div className="container">
-          <Button as="link" href="/" variant="plain">
+          <Button as="link" href={paths.home()} variant="plain">
             <ArrowLeftSvg />
             <span>Go Back</span>
           </Button>

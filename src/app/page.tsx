@@ -1,8 +1,8 @@
 import styles from './page.module.css';
 import Button from '@/components/Button';
 import RequestCard from '@/components/RequestCard';
-import { db } from '@/db';
 import { fetchAllRequests } from '@/db/queries/requests';
+import paths from '@/paths';
 
 export default async function Home() {
   const requests = await fetchAllRequests();
@@ -33,7 +33,7 @@ export default async function Home() {
           <div className="container flex">
             <p>Sort by: Most Upvotes</p>
 
-            <Button variant="purple" as="link" href="/new">
+            <Button variant="purple" as="link" href={paths.createRequest()}>
               + Add Feedback
             </Button>
           </div>

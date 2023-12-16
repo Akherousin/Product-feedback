@@ -5,6 +5,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 import { db } from '@/db';
+import paths from '@/paths';
 
 interface CreateRequestFormState {
   errors: {
@@ -72,6 +73,6 @@ export async function createRequest(
     }
   }
 
-  revalidatePath('/');
-  redirect('/');
+  revalidatePath(paths.home());
+  redirect(paths.home());
 }

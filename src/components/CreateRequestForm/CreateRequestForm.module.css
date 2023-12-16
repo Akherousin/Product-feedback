@@ -8,8 +8,18 @@
 
 .form {
   --column-gap: 24px;
+
+  position: relative;
   font-size: 13px;
   font-weight: 400;
+  margin-block-start: 55px;
+}
+
+.form > svg:first-child {
+  position: absolute;
+  left: 24px;
+  top: 0;
+  transform: translateY(-50%);
 }
 
 .field {

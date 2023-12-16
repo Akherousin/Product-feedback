@@ -1,0 +1,66 @@
+.request {
+  display: grid;
+  grid-template-areas:
+    'title title'
+    'content content'
+    'category category'
+    'upvotes comments';
+  justify-items: start;
+  row-gap: 0.5rem;
+}
+
+.title {
+  grid-area: title;
+  color: hsla(231, 33%, 34%, 1);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.181px;
+}
+
+.category {
+  grid-area: category;
+  text-transform: capitalize;
+}
+
+.description {
+  grid-area: content;
+  color: hsla(224, 20%, 49%, 1);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.upvotesButton {
+  grid-area: upvotes;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  padding-block: 6px 7px;
+  padding-inline: 16px 13px;
+  border: transparent;
+
+  color: hsla(231, 33%, 34%, 1);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.181px;
+}
+
+.commentsLink {
+  justify-self: end;
+  grid-area: comments;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: hsla(231, 33%, 34%, 1);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.222px;
+  text-decoration: none;
+}
+
+.upvotesButton,
+.commentsLink {
+  margin-block-start: 0.5rem;
+}

@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  image    String?
+  name     String
+  username String
+  comments Comment[]
+}
+
+model Comment {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  content      String
+  user         User      @relation(fields: [userId], references: [id])
+  userId       String    @db.ObjectId
+  request      Request   @relation(fields: [requestId], references: [id])
+  requestId    String    @db.ObjectId
+  parent       Comment?  @relation(name: "reply", fields: [replyingToId], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  replyingToId String?   @db.ObjectId
+  children     Comment[] @relation("reply")
+}
+
+model Request {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  category    Category  @default(Feature)
+  upvotes     Int       @default(0)
+  status      Status?   @default(Suggestion)
+  description String
+  comments    Comment[]
+}
+
+enum Category {
+  UI
+  UX
+  Enhancement
+  Bug
+  Feature
+}
+
+enum Status {
+  Suggestion
+  Planned
+  Progress
+  Live
+}

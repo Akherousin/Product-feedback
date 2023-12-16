@@ -1,0 +1,57 @@
+.button {
+  padding-block: 10.5px;
+  padding-inline: 16px;
+  border-radius: 10px;
+  border: transparent;
+  color: hsla(230, 86%, 97%, 1);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button[data-variant='purple'] {
+  background-color: hsla(282, 83%, 52%, 1);
+}
+.button[data-variant='purple']:hover {
+  background-color: hsla(282, 90%, 66%, 1);
+}
+
+.button[data-variant='blue'] {
+  background-color: hsla(230, 76%, 59%, 1);
+}
+.button[data-variant='blue']:hover {
+  background-color: hsla(230, 91%, 73%, 1);
+}
+
+.button[data-variant='grey'] {
+  background-color: hsla(231, 33%, 34%, 1);
+}
+.button[data-variant='grey']:hover {
+  background-color: hsla(231, 26%, 52%, 1);
+}
+
+.button[data-variant='red'] {
+  background-color: hsla(0, 67%, 53%, 1);
+}
+.button[data-variant='red']:hover {
+  background-color: hsla(0, 69%, 72%, 1);
+}
+
+.button[data-variant='dark-grey'] {
+  background-color: hsla(230, 31%, 31%, 1);
+}
+.button[data-variant='dark-grey']:hover {
+  text-decoration: underline;
+}
+
+.button[data-variant='plain'] {
+  display: flex;
+  gap: 15.67px;
+  align-items: center;
+
+  color: hsla(224, 20%, 49%, 1);
+}
+.button[data-variant='plain']:hover > span {
+  text-decoration: underline;
+}

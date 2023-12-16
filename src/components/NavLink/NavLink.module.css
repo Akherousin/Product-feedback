@@ -1,0 +1,15 @@
+.navlink:link,
+.navlink:visited {
+  padding-inline: 16px;
+  padding-block: 6px;
+
+  color: hsla(230, 76%, 59%, 1);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.navlink[aria-current='page'] {
+  background-color: hsla(230, 76%, 59%, 1);
+  color: hsla(0, 0%, 100%, 1);
+}

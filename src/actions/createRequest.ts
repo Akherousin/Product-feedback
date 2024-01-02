@@ -1,5 +1,6 @@
 'use server';
 
+import slugify from 'slugify';
 import { type Request } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
@@ -53,6 +54,7 @@ export async function createRequest(
     request = await db.request.create({
       data: {
         title: result.data.title,
+        slug: slugify(result.data.title),
         description: result.data.description,
         category: result.data.category,
       },

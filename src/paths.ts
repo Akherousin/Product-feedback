@@ -7,6 +7,10 @@ const paths = {
     return `/new`;
   },
 
+  showRequestPage(slug: string) {
+    return `/${slug}`;
+  },
+
   //   postShow(topicSlug: string, postId: string) {
   //     return `/topics/${topicSlug}/posts/${postId}`;
   //   },

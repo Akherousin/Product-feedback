@@ -2,10 +2,12 @@ import Link from 'next/link';
 import NavLink from '../NavLink';
 import styles from './RequestCard.module.css';
 import { Category } from '@prisma/client';
+import paths from '@/paths';
 
 interface RequestCardProps {
   title: string;
   description: string;
+  slug: string;
   category: Category;
   upvotes: number;
   comments: number;
@@ -14,6 +16,7 @@ interface RequestCardProps {
 function RequestCard({
   title,
   description,
+  slug,
   category,
   upvotes,
   comments,
@@ -34,7 +37,10 @@ function RequestCard({
         </span>
       </button>
 
-      <Link href="/" className={`${styles.commentsLink}`}>
+      <Link
+        href={paths.showRequestPage(slug)}
+        className={`${styles.commentsLink}`}
+      >
         <CommentSvg />
         {comments}{' '}
         <span className="visually-hidden">

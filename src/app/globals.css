@@ -135,3 +135,7 @@ button {
   flex-direction: column;
   gap: var(--column-gap);
 }
+
+.column[data-centered] {
+  align-items: center;
+}

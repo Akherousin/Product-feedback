@@ -3,6 +3,7 @@ import styles from './Button.module.css';
 
 type ButtonProps = {
   children: React.ReactNode;
+  className?: string;
   variant: 'purple' | 'blue' | 'grey' | 'dark-grey' | 'red' | 'plain';
 } & (
   | ({
@@ -11,21 +12,25 @@ type ButtonProps = {
   | ({ as: 'link' } & LinkProps)
 );
 
-function Button({ variant, children, as = 'button', ...rest }: ButtonProps) {
+function Button({
+  variant,
+  className,
+  children,
+  as = 'button',
+  ...rest
+}: ButtonProps) {
+  const classes = `${className ? className : ''} ${styles.button}`.trim();
+
   if (as === 'link') {
     return (
-      <Link
-        className={styles.button}
-        data-variant={variant}
-        {...(rest as LinkProps)}
-      >
+      <Link className={classes} data-variant={variant} {...(rest as LinkProps)}>
         {children}
       </Link>
     );
   } else {
     return (
       <button
-        className={styles.button}
+        className={classes}
         data-variant={variant}
         {...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}
       >

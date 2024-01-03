@@ -27,7 +27,7 @@ model Comment {
   requestId    String    @db.ObjectId
   parent       Comment?  @relation(name: "reply", fields: [replyingToId], references: [id], onUpdate: NoAction, onDelete: NoAction)
   replyingToId String?   @db.ObjectId
-  children     Comment[] @relation("reply")
+  replies      Comment[] @relation("reply")
 }
 
 model Request {

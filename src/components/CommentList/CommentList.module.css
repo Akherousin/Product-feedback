@@ -1,0 +1,19 @@
+.comments__wrapper {
+  margin-block-start: 24px;
+}
+
+.title {
+  color: #3a4374;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.25px;
+}
+
+.comments {
+  list-style: none;
+}
+
+.comments > * + * {
+  margin-block-start: 24px;
+  border-block-start: 1px solid hsla(231, 20%, 63%, 0.25);
+}

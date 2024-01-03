@@ -1,0 +1,55 @@
+.comment {
+  color: #647196;
+  font-size: 13px;
+  font-weight: 400;
+  margin-block-start: 24px;
+}
+
+.comment header {
+  display: flex;
+  gap: 16px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.author {
+  color: #3a4374;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.181px;
+}
+
+.btn {
+  border: transparent;
+  background: transparent;
+  color: #4661e6;
+  font-size: 13px;
+  font-weight: 600;
+  margin-inline-start: auto;
+}
+
+.content {
+  margin-block-start: 16px;
+}
+
+.replies {
+  list-style: none;
+  padding-inline-start: 24px;
+  border-inline-start: 1px solid hsla(231, 20%, 63%, 0.25);
+}
+
+.replyTo {
+  color: #ad1fea;
+  font-weight: 700;
+}

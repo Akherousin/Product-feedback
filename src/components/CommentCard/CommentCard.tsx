@@ -3,18 +3,15 @@
 import Image from 'next/image';
 import avatarImg from '@/assets/user-images/image-anne.jpg';
 import styles from './CommentCard.module.css';
-import { useState } from 'react';
+import { useOptimistic, useState } from 'react';
 import CreateCommentForm from '../CreateCommentForm';
-import { type Comment } from '@prisma/client';
+import { type User, type Comment } from '@prisma/client';
 
 interface CommentCardProps {
+  addOptimisticComment: (...args: any[]) => void;
   commentId: string;
   comments: ({
-    user: {
-      image: string | null;
-      name: string;
-      username: string;
-    };
+    user: User;
     parent: {
       user: {
         username: string;
@@ -23,18 +20,32 @@ interface CommentCardProps {
   } & Comment)[];
 }
 
-function CommentCard({ comments, commentId }: CommentCardProps) {
+const currentUser: User = {
+  id: '657d4f9f0f48518bd306766d',
+  name: 'Suzanne Chang',
+  username: 'upbeat1811',
+  image: null,
+};
+
+function CommentCard({
+  comments,
+  commentId,
+  addOptimisticComment,
+}: CommentCardProps) {
   const [showForm, setShowForm] = useState(false);
   const comment = comments.find((c) => c.id === commentId);
 
   if (!comment) return null;
 
   const children = comments.filter((c) => c.replyingToId === commentId);
-
   const renderedChildren = children.map((child) => {
     return (
       <li key={child.id}>
-        <CommentCard commentId={child.id} comments={comments} />
+        <CommentCard
+          commentId={child.id}
+          comments={comments}
+          addOptimisticComment={addOptimisticComment}
+        />
       </li>
     );
   });
@@ -67,13 +78,14 @@ function CommentCard({ comments, commentId }: CommentCardProps) {
         <CreateCommentForm
           variant="reply"
           replyingToId={comment.id}
+          parentUserName={comment.parent?.user.username}
           requestId={comment.requestId}
+          hideForm={() => setShowForm(false)}
+          addOptimisticComment={addOptimisticComment}
         />
       )}
 
-      {renderedChildren.length > 0 && (
-        <ul className={styles.replies}>{renderedChildren}</ul>
-      )}
+      <ul className={styles.replies}>{renderedChildren}</ul>
     </article>
   );
 }

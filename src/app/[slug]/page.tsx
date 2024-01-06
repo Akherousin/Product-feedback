@@ -43,7 +43,6 @@ export default async function RequestPage({ params }: RequestPageProps) {
           <section>
             <CommentList requestId={request.id} />
           </section>
-          <CreateCommentForm requestId={request.id} variant="comment" />
         </div>
       </main>
     </>

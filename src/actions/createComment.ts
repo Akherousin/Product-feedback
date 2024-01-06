@@ -1,18 +1,19 @@
 'use server';
 
-import slugify from 'slugify';
 import { Comment, type Request } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 import { db } from '@/db';
 import paths from '@/paths';
+import CURRENT_USER from '@/currentUser';
 
 interface CreateCommentFormState {
   errors: {
     content?: string[];
     _form?: string[];
   };
+  success?: boolean;
 }
 
 const createCommentSchema = z.object({
@@ -34,7 +35,6 @@ export async function createComment(
   });
 
   if (!result.success) {
-    console.log(result.error.flatten().fieldErrors);
     return {
       errors: result.error.flatten().fieldErrors,
     };
@@ -45,7 +45,7 @@ export async function createComment(
     comment = await db.comment.create({
       data: {
         content: result.data.content,
-        userId: '657d4f9f0f48518bd306766d',
+        userId: CURRENT_USER.id,
         requestId,
         replyingToId: replyingToId || null,
       },
@@ -85,5 +85,8 @@ export async function createComment(
   }
 
   revalidatePath(paths.showRequestPage(request.slug));
-  redirect(paths.showRequestPage(request.slug));
+  return {
+    errors: {},
+    success: true,
+  };
 }

@@ -21,13 +21,13 @@ model User {
 model Comment {
   id           String    @id @default(auto()) @map("_id") @db.ObjectId
   content      String
-  user         User      @relation(fields: [userId], references: [id])
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId       String    @db.ObjectId
-  request      Request   @relation(fields: [requestId], references: [id])
+  request      Request   @relation(fields: [requestId], references: [id], onDelete: Cascade)
   requestId    String    @db.ObjectId
   parent       Comment?  @relation(name: "reply", fields: [replyingToId], references: [id], onUpdate: NoAction, onDelete: NoAction)
   replyingToId String?   @db.ObjectId
-  replies      Comment[] @relation("reply")
+  replies      Comment[] @relation(name: "reply")
 }
 
 model Request {

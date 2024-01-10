@@ -1,55 +1,41 @@
 import Button from '@/components/Button';
-import paths from '@/paths';
-import styles from './page.module.css';
+import EditRequestForm from '@/components/EditRequestForm';
 import { fetchRequest } from '@/db/queries/requests';
-import RequestCard from '@/components/RequestCard';
+import paths from '@/paths';
 import { notFound } from 'next/navigation';
-import CreateCommentForm from '@/components/CreateCommentForm';
-import CommentList from '@/components/CommentList/CommentList';
 
-interface RequestPageProps {
+interface EditRequestPageProps {
   params: {
     slug: string;
   };
 }
 
-export default async function RequestPage({ params }: RequestPageProps) {
+export default async function EditRequestPage({
+  params,
+}: EditRequestPageProps) {
   const request = await fetchRequest(params.slug);
   if (!request) notFound();
 
   return (
     <>
-      <header className={styles.header}>
-        <div className="container flex">
+      <header>
+        <div className="container">
           <Button as="link" href={paths.home()} variant="plain">
             <ArrowLeftSvg />
             <span>Go Back</span>
           </Button>
-
-          <Button
-            variant="blue"
-            as="link"
-            href={paths.showEditPage(params.slug)}
-          >
-            Edit feedback
-          </Button>
         </div>
       </header>
       <main>
-        <div className="container">
-          <RequestCard
+        <div className="container ">
+          <EditRequestForm
             id={request.id}
-            title={request.title}
-            level={1}
             slug={request.slug}
+            title={request.title}
             description={request.description}
             category={request.category}
-            upvotes={request.upvotes}
-            comments={request.comments.length}
+            status={request.status}
           />
-          <section>
-            <CommentList requestId={request.id} />
-          </section>
         </div>
       </main>
     </>

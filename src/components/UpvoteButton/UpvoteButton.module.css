@@ -1,0 +1,15 @@
+.upvotesButton {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+  padding-block: 6px 7px;
+  padding-inline: 16px 13px;
+  border: transparent;
+
+  color: hsla(231, 33%, 34%, 1);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.181px;
+}

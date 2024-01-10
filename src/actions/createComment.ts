@@ -2,7 +2,6 @@
 
 import { Comment, type Request } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 import { z } from 'zod';
 import { db } from '@/db';
 import paths from '@/paths';
@@ -17,9 +16,7 @@ interface CreateCommentFormState {
 }
 
 const createCommentSchema = z.object({
-  content: z
-    .string()
-    .min(10, { message: 'Your comment must contain at least 10 characters.' }),
+  content: z.string().min(1, { message: 'Your comment cannot be empty' }),
 });
 
 export async function createComment(

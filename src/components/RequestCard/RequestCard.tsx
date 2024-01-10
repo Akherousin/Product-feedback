@@ -3,8 +3,10 @@ import NavLink from '../NavLink';
 import styles from './RequestCard.module.css';
 import { Category } from '@prisma/client';
 import paths from '@/paths';
+import UpvoteButton from '../UpvoteButton';
 
 interface RequestCardProps {
+  id: string;
   title: string;
   description: string;
   slug: string;
@@ -15,6 +17,7 @@ interface RequestCardProps {
 }
 
 function RequestCard({
+  id,
   title,
   description,
   slug,
@@ -32,13 +35,7 @@ function RequestCard({
         {category}
       </NavLink>
 
-      <button className={`${styles.upvotesButton} | pill`}>
-        <ArrowUpSvg />
-        {upvotes}{' '}
-        <span className="visually-hidden">
-          {upvotes === 1 ? 'upvote' : 'upvotes'}
-        </span>
-      </button>
+      <UpvoteButton initialUpvotes={upvotes} requestId={id} />
 
       <Link
         href={paths.showRequestPage(slug)}
@@ -51,26 +48,6 @@ function RequestCard({
         </span>
       </Link>
     </article>
-  );
-}
-
-function ArrowUpSvg() {
-  return (
-    <svg
-      width="10"
-      height="7"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path
-        d="M1 6l4-4 4 4"
-        stroke="#4661E6"
-        strokeWidth="2"
-        fill="none"
-        fillRule="evenodd"
-      />
-    </svg>
   );
 }
 

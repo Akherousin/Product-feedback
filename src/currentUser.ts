@@ -5,6 +5,7 @@ const CURRENT_USER: User = {
   name: 'Stupid User',
   username: 'User',
   image: null,
+  likedRequests: [],
 };
 
 export default CURRENT_USER;

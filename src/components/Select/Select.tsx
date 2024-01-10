@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './Select.module.css';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside.hook';
 
@@ -10,6 +10,7 @@ interface Option {
 }
 
 interface SelectProps {
+  initialValue?: string;
   options: Option[];
   name: string;
   labelledby: string;
@@ -20,11 +21,16 @@ interface SelectProps {
 const Select = ({
   options,
   name,
+  initialValue,
   labelledby,
   describedby,
   className,
 }: SelectProps) => {
-  const [selectedOptionId, setSelectedOptionId] = useState(0);
+  const [selectedOptionId, setSelectedOptionId] = useState(
+    initialValue
+      ? options.findIndex((option) => option.value === initialValue)
+      : 0
+  );
   const [highlightedOptionIndex, setHighlightedOptionIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);

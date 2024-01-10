@@ -1,4 +1,5 @@
 import { db } from '..';
+import { cache } from 'react';
 
 export function fetchAllRequests() {
   return db.request.findMany({
@@ -12,11 +13,11 @@ export function fetchAllRequests() {
   });
 }
 
-export function fetchRequest(slug: string) {
+export const fetchRequest = cache((slug: string) => {
   return db.request.findFirst({
     where: { slug },
     include: {
       comments: true,
     },
   });
-}
+});

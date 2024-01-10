@@ -15,6 +15,7 @@ export default async function Home() {
             return (
               <RequestCard
                 key={id}
+                id={id}
                 title={title}
                 level={2}
                 slug={slug}

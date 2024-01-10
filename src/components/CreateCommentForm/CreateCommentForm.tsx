@@ -4,7 +4,7 @@ import { useFormState } from 'react-dom';
 import * as actions from '@/actions';
 import styles from './CreateCommentForm.module.css';
 import Button from '@/components/Button';
-import { useEffect, useRef } from 'react';
+import { type ChangeEvent, useRef, useState } from 'react';
 
 type CreateCommentFormProps = {
   requestId: string;
@@ -21,6 +21,8 @@ type CreateCommentFormProps = {
       replyingToId: string;
     }
 );
+
+const MAX_COMMENTS_LENGTH = 250;
 
 function CreateCommentForm({
   requestId,
@@ -39,18 +41,25 @@ function CreateCommentForm({
       errors: {},
     }
   );
+  const [charactersLeft, setCharactersLeft] = useState(MAX_COMMENTS_LENGTH);
   const formRef = useRef<HTMLFormElement | null>(null);
+
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setCharactersLeft(MAX_COMMENTS_LENGTH - e.target.textLength);
+  };
 
   return (
     <form
       className={`${styles.form} | ${variant === 'reply' ? '' : 'box'} column`}
       action={async (formData: FormData) => {
-        const content = formData.get('content');
-        addOptimisticComment({
-          newComment: content,
-          replyingToId: replyingToId || null,
-          parentUserName: replyingToId ? parentUserName : null,
-        });
+        const content = formData.get('content') as string;
+        if (content?.length > 0) {
+          addOptimisticComment({
+            newComment: content,
+            replyingToId: replyingToId || null,
+            parentUserName: replyingToId ? parentUserName : null,
+          });
+        }
         await action(formData);
         formRef.current?.reset();
         hideForm?.();
@@ -67,10 +76,20 @@ function CreateCommentForm({
           id="content"
           name="content"
           placeholder={`Type your ${variant} here`}
+          onChange={handleChange}
+          maxLength={MAX_COMMENTS_LENGTH}
+          aria-invalid={Boolean(formState.errors.content)}
+          aria-describedby="content-error-message content-characters-left"
         />
       </div>
+      <p aria-live="assertive" id="content-error-message">
+        {formState.errors.content && formState.errors.content.join(', ')}
+      </p>
       <div className="flex">
-        <p>250 characters left</p>
+        <p aria-live="polite" id="content-characters-left">
+          {charactersLeft} {charactersLeft === 1 ? 'character' : 'characters'}{' '}
+          left
+        </p>
         <Button variant="purple">Post {variant}</Button>
       </div>
     </form>

@@ -2,12 +2,14 @@
 
 import { useFormState } from 'react-dom';
 import * as actions from '@/actions';
-import styles from './CreateRequestForm.module.css';
-import { type Category } from '@prisma/client';
+import styles from './EditRequestForm.module.css';
+import { type Category, type Status } from '@prisma/client';
 import Select from '../Select';
 import Button from '../Button';
+import { useRef, useState } from 'react';
+import paths from '@/paths';
 
-const options: {
+const categoryOptions: {
   label: string;
   value: Category;
 }[] = [
@@ -18,15 +20,54 @@ const options: {
   { label: 'Feature', value: 'Feature' },
 ];
 
-function CreateRequestForm() {
-  const [formState, action] = useFormState(actions.createRequest, {
-    errors: {},
-  });
+const statusOptions: {
+  label: string;
+  value: Status;
+}[] = [
+  { label: 'Suggestion', value: 'Suggestion' },
+  { label: 'Planned', value: 'Planned' },
+  { label: 'Progress', value: 'Progress' },
+  { label: 'Live', value: 'Live' },
+];
+
+interface EditRequestFormProps {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  category: Category;
+  status: Status;
+}
+
+function EditRequestForm({
+  id,
+  title,
+  slug,
+  description,
+  category,
+  status,
+}: EditRequestFormProps) {
+  const [formState, action] = useFormState(
+    actions.editRequest.bind(null, { requestId: id }),
+    {
+      errors: {},
+    }
+  );
+
+  const formRef = useRef<HTMLFormElement>(null);
+
+  // const handleCancelClick = () => {
+  //   formRef.current?.reset();
+  // };
 
   return (
-    <form className={`${styles.form} | box column`} action={action}>
-      <NewSvg />
-      <h1 className={styles.title}>Create New Feedback</h1>
+    <form
+      className={`${styles.form} | box column`}
+      action={action}
+      ref={formRef}
+    >
+      <EditSvg />
+      <h1 className={styles.title}>Editing &apos;{title}&apos;</h1>
       <div className={styles.field}>
         <label className={styles.label} htmlFor="title">
           {' '}
@@ -40,6 +81,7 @@ function CreateRequestForm() {
           id="title"
           name="title"
           className={styles.input}
+          defaultValue={title}
           aria-invalid={formState.errors.title ? true : undefined}
           aria-describedby="title-error-message title-description"
         />
@@ -55,13 +97,32 @@ function CreateRequestForm() {
           Choose a category for your feedback
         </p>
         <Select
-          options={options}
+          initialValue={category}
+          options={categoryOptions}
           className={styles.input}
           name="category"
           labelledby="category-label"
           describedby="category-description"
         />
       </div>
+
+      <div className={styles.field}>
+        <label className={styles.label} id="status-label">
+          Update Status
+        </label>
+        <p className={styles.description} id="status-description">
+          Change feature state
+        </p>
+        <Select
+          initialValue={status}
+          options={statusOptions}
+          className={styles.input}
+          name="status"
+          labelledby="status-label"
+          describedby="status-description"
+        />
+      </div>
+
       <div className={styles.field}>
         <label className={styles.label} htmlFor="description">
           Feedback Detail
@@ -73,6 +134,7 @@ function CreateRequestForm() {
           className={styles.input}
           id="description"
           name="description"
+          defaultValue={description}
           aria-invalid={formState.errors.description ? true : undefined}
           aria-describedby="description-error-message description-description"
         />
@@ -83,24 +145,31 @@ function CreateRequestForm() {
       </div>
       <div className={`${styles.buttons} | column`}>
         <Button variant="purple" type="submit">
-          Add Feedback
+          Save Changes
         </Button>
-        <Button variant="grey" type="button">
+        <Button variant="grey" as="link" href={paths.showRequestPage(slug)}>
           Cancel
+        </Button>
+        <Button
+          variant="red"
+          type="button"
+          onClick={() => actions.deleteRequest(id)}
+        >
+          Delete
         </Button>
       </div>
     </form>
   );
 }
 
-function NewSvg() {
+function EditSvg() {
   return (
     <svg
-      width="56"
-      height="56"
+      width="40"
+      height="40"
       xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
       focusable="false"
+      aria-hidden="true"
     >
       <defs>
         <radialGradient
@@ -117,15 +186,15 @@ function NewSvg() {
         </radialGradient>
       </defs>
       <g fill="none" fillRule="evenodd">
-        <circle fill="url(#a)" cx="28" cy="28" r="28" />
+        <circle fill="url(#a)" cx="20" cy="20" r="20" />
         <path
+          d="M19.512 15.367l4.975 4.53-3.8 5.54L11.226 29l4.485-4.1c.759.275 1.831.026 2.411-.594a1.958 1.958 0 00-.129-2.82c-.836-.745-2.199-.745-2.964.068-.57.607-.767 1.676-.44 2.381L11 28.713c.255-1.06.683-2.75 1.115-4.436l.137-.531c.658-2.563 1.287-4.964 1.287-4.964l5.973-3.415zM23.257 12L28 16.443l-2.584 2.606-4.89-4.583L23.257 12z"
           fill="#FFF"
           fillRule="nonzero"
-          d="M30.343 36v-5.834h5.686v-4.302h-5.686V20h-4.597v5.864H20v4.302h5.746V36z"
         />
       </g>
     </svg>
   );
 }
 
-export default CreateRequestForm;
+export default EditRequestForm;

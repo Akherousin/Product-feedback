@@ -8,7 +8,7 @@ import { z } from 'zod';
 import { db } from '@/db';
 import paths from '@/paths';
 
-interface CreateRequestFormState {
+interface EditRequestFormState {
   errors: {
     title?: string[];
     description?: string[];
@@ -24,20 +24,25 @@ const categoryTypeSchema = z.enum([
   'Feature',
 ]);
 
-const createRequestSchema = z.object({
+const statusTypeSchema = z.enum(['Suggestion', 'Planned', 'Progress', 'Live']);
+
+const editRequestSchema = z.object({
   title: z.string().min(1, { message: 'Title cannot be empty' }),
   description: z.string().min(1, { message: 'You must provide a description' }),
   category: categoryTypeSchema,
+  status: statusTypeSchema,
 });
 
-export async function createRequest(
-  formState: CreateRequestFormState,
+export async function editRequest(
+  { requestId }: { requestId: string },
+  formState: EditRequestFormState,
   formData: FormData
-): Promise<CreateRequestFormState> {
-  const result = createRequestSchema.safeParse({
+): Promise<EditRequestFormState> {
+  const result = editRequestSchema.safeParse({
     title: formData.get('title'),
     description: formData.get('description'),
     category: formData.get('category'),
+    status: formData.get('status'),
   });
 
   if (!result.success) {
@@ -48,12 +53,14 @@ export async function createRequest(
 
   let request: Request;
   try {
-    request = await db.request.create({
+    request = await db.request.update({
+      where: { id: requestId },
       data: {
         title: result.data.title,
         slug: slugify(result.data.title),
         description: result.data.description,
         category: result.data.category,
+        status: result.data.status,
       },
     });
   } catch (err: unknown) {
@@ -73,5 +80,5 @@ export async function createRequest(
   }
 
   revalidatePath(paths.home());
-  redirect(paths.home());
+  redirect(paths.showRequestPage(slugify(result.data.title)));
 }

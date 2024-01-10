@@ -11,6 +11,10 @@ const paths = {
     return `/${slug}`;
   },
 
+  showEditPage(slug: string) {
+    return `/${slug}/edit`;
+  },
+
   //   postShow(topicSlug: string, postId: string) {
   //     return `/topics/${topicSlug}/posts/${postId}`;
   //   },

@@ -9,6 +9,7 @@
   cursor: pointer;
   text-decoration: none;
   text-align: center;
+  min-height: 44px;
 }
 
 .button[data-variant='purple'] {

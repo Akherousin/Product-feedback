@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import avatarImg from '@/assets/user-images/image-anne.jpg';
 import styles from './CommentCard.module.css';
-import { useOptimistic, useState } from 'react';
+import { useState } from 'react';
 import CreateCommentForm from '../CreateCommentForm';
 import { type User, type Comment } from '@prisma/client';
 
@@ -19,13 +19,6 @@ interface CommentCardProps {
     } | null;
   } & Comment)[];
 }
-
-const currentUser: User = {
-  id: '657d4f9f0f48518bd306766d',
-  name: 'Suzanne Chang',
-  username: 'upbeat1811',
-  image: null,
-};
 
 function CommentCard({
   comments,

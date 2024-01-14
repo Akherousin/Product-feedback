@@ -6,6 +6,8 @@ import styles from './CreateRequestForm.module.css';
 import { type Category } from '@prisma/client';
 import Select from '../Select';
 import Button from '../Button';
+import FormButton from '../FormButton';
+import paths from '@/paths';
 
 const options: {
   label: string;
@@ -82,10 +84,15 @@ function CreateRequestForm() {
         </p>
       </div>
       <div className={`${styles.buttons} | column`}>
-        <Button variant="purple" type="submit">
+        <FormButton
+          variant="purple"
+          type="submit"
+          announcerMessage="Adding feedback..."
+          invokedAction={action}
+        >
           Add Feedback
-        </Button>
-        <Button variant="grey" type="button">
+        </FormButton>
+        <Button variant="grey" as="link" href={paths.home()}>
           Cancel
         </Button>
       </div>

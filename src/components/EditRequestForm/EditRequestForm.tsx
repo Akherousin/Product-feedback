@@ -8,6 +8,7 @@ import Select from '../Select';
 import Button from '../Button';
 import { useRef, useState } from 'react';
 import paths from '@/paths';
+import FormButton from '../FormButton';
 
 const categoryOptions: {
   label: string;
@@ -56,9 +57,7 @@ function EditRequestForm({
 
   const formRef = useRef<HTMLFormElement>(null);
 
-  // const handleCancelClick = () => {
-  //   formRef.current?.reset();
-  // };
+  const deleteRequestAction = async () => await actions.deleteRequest(id);
 
   return (
     <form
@@ -144,19 +143,26 @@ function EditRequestForm({
         </p>
       </div>
       <div className={`${styles.buttons} | column`}>
-        <Button variant="purple" type="submit">
+        <FormButton
+          variant="purple"
+          type="submit"
+          announcerMessage="Saving changes..."
+          invokedAction={action}
+        >
           Save Changes
-        </Button>
+        </FormButton>
         <Button variant="grey" as="link" href={paths.showRequestPage(slug)}>
           Cancel
         </Button>
-        <Button
+        <FormButton
           variant="red"
-          type="button"
-          onClick={() => actions.deleteRequest(id)}
+          type="submit"
+          formAction={deleteRequestAction}
+          announcerMessage="Deleting request..."
+          invokedAction={deleteRequestAction}
         >
           Delete
-        </Button>
+        </FormButton>
       </div>
     </form>
   );

@@ -1,9 +1,9 @@
 import { cache } from 'react';
 import { db } from '..';
-import { type Comment } from '@prisma/client';
+import { type User, type Comment } from '@prisma/client';
 
 export type CommentWithAuthorAndParent = Comment & {
-  user: { id: string; image: string | null; name: string; username: string };
+  user: User;
   parent: {
     user: {
       username: string;

@@ -40,6 +40,7 @@ function RequestCard({
       <Link
         href={paths.showRequestPage(slug)}
         className={`${styles.commentsLink}`}
+        prefetch={true}
       >
         <CommentSvg />
         {comments}{' '}

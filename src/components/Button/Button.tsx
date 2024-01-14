@@ -1,7 +1,7 @@
 import Link, { LinkProps } from 'next/link';
 import styles from './Button.module.css';
 
-type ButtonProps = {
+export type ButtonProps = {
   children: React.ReactNode;
   className?: string;
   variant: 'purple' | 'blue' | 'grey' | 'dark-grey' | 'red' | 'plain';

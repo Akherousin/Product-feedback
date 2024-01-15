@@ -15,7 +15,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  console.log(jost.className);
   return (
     <html lang="en">
       <body className={jost.className}>{children}</body>

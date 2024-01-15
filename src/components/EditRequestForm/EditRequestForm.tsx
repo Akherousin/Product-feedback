@@ -9,6 +9,7 @@ import Button from '../Button';
 import { useRef, useState } from 'react';
 import paths from '@/paths';
 import FormButton from '../FormButton';
+import { useFocusOnInvalidInput } from '@/hooks/useFocusOnInvalidInput.hook';
 
 const categoryOptions: {
   label: string;
@@ -58,6 +59,8 @@ function EditRequestForm({
   const formRef = useRef<HTMLFormElement>(null);
 
   const deleteRequestAction = async () => await actions.deleteRequest(id);
+
+  useFocusOnInvalidInput(formRef);
 
   return (
     <form

@@ -8,6 +8,8 @@ import Select from '../Select';
 import Button from '../Button';
 import FormButton from '../FormButton';
 import paths from '@/paths';
+import { useRef } from 'react';
+import { useFocusOnInvalidInput } from '@/hooks/useFocusOnInvalidInput.hook';
 
 const options: {
   label: string;
@@ -24,9 +26,16 @@ function CreateRequestForm() {
   const [formState, action] = useFormState(actions.createRequest, {
     errors: {},
   });
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useFocusOnInvalidInput(formRef);
 
   return (
-    <form className={`${styles.form} | box column`} action={action}>
+    <form
+      className={`${styles.form} | box column`}
+      action={action}
+      ref={formRef}
+    >
       <NewSvg />
       <h1 className={styles.title}>Create New Feedback</h1>
       <div className={styles.field}>

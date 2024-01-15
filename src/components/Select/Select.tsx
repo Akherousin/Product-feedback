@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import styles from './Select.module.css';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside.hook';
 
@@ -12,10 +12,13 @@ interface Option {
 interface SelectProps {
   initialValue?: string;
   options: Option[];
-  name: string;
-  labelledby: string;
-  describedby: string;
-  className: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>, ...args: any[]) => void;
+  name?: string;
+  labelledby?: string;
+  describedby?: string;
+  className?: string;
+  wrapperClassName?: string;
+  dropdownClassName?: string;
 }
 
 const Select = ({
@@ -24,7 +27,10 @@ const Select = ({
   initialValue,
   labelledby,
   describedby,
+  onChange,
   className,
+  wrapperClassName,
+  dropdownClassName,
 }: SelectProps) => {
   const [selectedOptionId, setSelectedOptionId] = useState(
     initialValue
@@ -119,7 +125,12 @@ const Select = ({
   return (
     <>
       <input type="text" value={selectedValue} name={name} hidden readOnly />
-      <div className={styles.wrapper} ref={ref}>
+      <div
+        className={`${styles.wrapper} ${
+          wrapperClassName ? wrapperClassName : ''
+        }`}
+        ref={ref}
+      >
         <button
           type="button"
           className={`${className ? className : ''} ${styles.combobox} | flex`}
@@ -139,7 +150,9 @@ const Select = ({
         {isOpen && (
           <ul
             role="listbox"
-            className={styles.dropdown}
+            className={`${styles.dropdown} ${
+              dropdownClassName ? dropdownClassName : ''
+            }`}
             id="select-dropdown"
             tabIndex={-1}
           >
@@ -157,8 +170,12 @@ const Select = ({
                   <label className="flex">
                     <input
                       type="radio"
+                      value={optionValue}
                       checked={selectedValue === optionValue}
-                      onChange={() => selectOption(index)}
+                      onChange={(e) => {
+                        selectOption(index);
+                        if (onChange) onChange(e);
+                      }}
                       tabIndex={-1}
                     />
                     {optionLabel}

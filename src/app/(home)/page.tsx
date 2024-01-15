@@ -1,32 +1,23 @@
 import RequestCard from '@/components/RequestCard';
+import RequestList from '@/components/RequestList';
+import { SortValues } from '@/components/Sort/Sort';
 import { fetchAllRequests } from '@/db/queries/requests';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 
-export default async function Home() {
-  const requests = await fetchAllRequests();
-
-  if (requests.length < 1) notFound();
-
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: {
+    sort: SortValues;
+  };
+}) {
   return (
     <>
       <div className="container column">
-        {requests.map(
-          ({ id, title, category, upvotes, description, slug, _count }) => {
-            return (
-              <RequestCard
-                key={id}
-                id={id}
-                title={title}
-                level={2}
-                slug={slug}
-                category={category}
-                upvotes={upvotes}
-                description={description}
-                comments={_count.comments}
-              />
-            );
-          }
-        )}
+        <Suspense key={searchParams.sort} fallback={null}>
+          <RequestList sortBy={searchParams.sort} />
+        </Suspense>
       </div>
     </>
   );

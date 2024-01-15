@@ -1,6 +1,7 @@
 import paths from '@/paths';
 import styles from './layout.module.css';
 import Button from '@/components/Button';
+import Sort from '@/components/Sort';
 
 export default function HomeLayout({
   children,
@@ -31,7 +32,7 @@ export default function HomeLayout({
       <main>
         <div className={`${styles.actions}`}>
           <div className="container flex">
-            <p>Sort by: Most Upvotes</p>
+            <Sort />
 
             <Button variant="purple" as="link" href={paths.createRequest()}>
               + Add Feedback

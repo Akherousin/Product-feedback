@@ -1,0 +1,26 @@
+.sort {
+  display: flex;
+  align-items: center;
+  color: #f2f4fe;
+  font-size: 13px;
+  font-weight: 400;
+  position: relative;
+  align-self: stretch;
+}
+
+.combobox {
+  background: none;
+  border: transparent;
+  color: inherit;
+  font-weight: 700;
+  display: flex;
+  gap: 8px;
+}
+
+.comboboxWrapper {
+  position: static;
+}
+
+.dropdown {
+  top: calc(100% + 16px);
+}

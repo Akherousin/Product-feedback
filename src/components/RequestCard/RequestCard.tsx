@@ -13,7 +13,7 @@ interface RequestCardProps {
   category: Category;
   upvotes: number;
   comments: number;
-  level: 1 | 2;
+  level: 1 | 2 | 3;
 }
 
 function RequestCard({
@@ -30,6 +30,7 @@ function RequestCard({
     <article className={`${styles.request} | box`}>
       {level === 1 && <h1 className={styles.title}>{title}</h1>}
       {level === 2 && <h2 className={styles.title}>{title}</h2>}
+      {level === 3 && <h3 className={styles.title}>{title}</h3>}
       <p className={styles.description}>{description}</p>
       <NavLink className={styles.category} href={`/${category.toLowerCase()}`}>
         {category}

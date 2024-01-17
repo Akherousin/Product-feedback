@@ -1,0 +1,52 @@
+.tablist {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  color: #647196;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.tab {
+  border: transparent;
+  background-color: transparent;
+  border-block-end: 1px solid hsla(231, 20%, 63%, 0.5);
+  opacity: 0.5;
+
+  color: #3a4374;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.181px;
+  padding-block: 20px;
+  position: relative;
+}
+
+.tab[aria-selected='true'] {
+  opacity: 1;
+}
+
+.tab[aria-selected='true']::after {
+  content: '';
+  height: 4px;
+  width: 100%;
+  background-color: hsla(282, 83%, 52%, 1);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.tabpanel {
+  grid-column: 1 / -1;
+}
+
+.tabpanel__title {
+  color: #3a4374;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.25px;
+  margin-block-start: 24px;
+}
+
+.tabpanel__list {
+  margin-block-start: 24px;
+  list-style: none;
+}

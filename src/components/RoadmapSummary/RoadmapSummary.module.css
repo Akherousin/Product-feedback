@@ -1,0 +1,63 @@
+.roadmap {
+  color: hsla(224, 20%, 49%, 1);
+  margin-block-start: 24px;
+}
+
+.roadmap > header > h2 {
+  color: #3a4374;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.25px;
+}
+
+.roadmap :is(a:link, a:visited) {
+  color: #4661e6;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration-line: underline;
+}
+
+.roadmap :is(a:hover, a:active) {
+  text-decoration: none;
+}
+
+.roadmap__list {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  color: #647196;
+  font-size: 16px;
+  font-weight: 400;
+  row-gap: 8px;
+  margin-block-start: 24px;
+}
+
+.roadmap__list dt {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.roadmap__list dt::before {
+  content: '';
+  display: block;
+  background: red;
+  border-radius: 50%;
+  height: 8px;
+  width: 8px;
+}
+
+.roadmap__list dt:first-of-type::before {
+  background-color: hsla(14, 83%, 74%, 1);
+}
+
+.roadmap__list dt:nth-of-type(2)::before {
+  background-color: hsla(282, 83%, 52%, 1);
+}
+
+.roadmap__list dt:last-of-type::before {
+  background-color: hsla(204, 94%, 68%, 1);
+}
+
+.roadmap__list dd {
+  font-weight: 700;
+}

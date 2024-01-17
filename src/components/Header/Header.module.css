@@ -1,0 +1,65 @@
+.header {
+  background: radial-gradient(
+    166.82% 166.82% at 103.9% -10.39%,
+    #e84d70 0%,
+    #a337f6 53.09%,
+    #28a7ed 100%
+  );
+  color: hsla(0, 0%, 100%, 1);
+}
+
+.header svg {
+  pointer-events: none;
+}
+
+.header > div {
+  position: relative;
+  padding-block: 1rem;
+}
+
+.header h1 {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.187px;
+}
+
+.header p {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.75;
+}
+
+.header button {
+  border: transparent;
+  background: none;
+}
+
+.links {
+  list-style: none;
+}
+
+.menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: hsla(230, 60%, 98%, 1);
+  height: calc(100vh - 100%);
+  width: 271px;
+  box-shadow: 0px 50vmax 0px 50vmax rgba(0, 0, 0, 0.5);
+  z-index: 3;
+  padding: 24px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  row-gap: 14px;
+}
+
+.links > li {
+}
+
+.links a {
+  display: inline-block;
+}

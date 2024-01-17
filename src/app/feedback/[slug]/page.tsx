@@ -4,7 +4,6 @@ import styles from './page.module.css';
 import { fetchRequest } from '@/db/queries/requests';
 import RequestCard from '@/components/RequestCard';
 import { notFound } from 'next/navigation';
-import CreateCommentForm from '@/components/CreateCommentForm';
 import CommentList from '@/components/CommentList/CommentList';
 
 interface RequestPageProps {

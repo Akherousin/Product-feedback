@@ -3,19 +3,19 @@ import { useEffect } from 'react';
 
 export function useOnClickOutside<T extends Element>(
   ref: MutableRefObject<T | null>,
-  callback: (...args: any[]) => any
+  callback: (e: Event, ...args: any[]) => any
 ) {
   useEffect(() => {
     const handleEvent = (e: MouseEvent) => {
       if (ref?.current && !ref.current.contains(e.target as Node)) {
-        callback();
+        callback(e);
       }
     };
 
-    window.addEventListener('click', handleEvent);
+    window.addEventListener('click', handleEvent, true);
 
     return () => {
-      window.removeEventListener('click', handleEvent);
+      window.removeEventListener('click', handleEvent, true);
     };
   }, [ref, callback]);
 }

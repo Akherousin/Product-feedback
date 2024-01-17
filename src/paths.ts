@@ -8,11 +8,11 @@ const paths = {
   },
 
   showRequestPage(slug: string) {
-    return `/${slug}`;
+    return `/feedback/${slug}`;
   },
 
   showEditPage(slug: string) {
-    return `/${slug}/edit`;
+    return `/feedback/${slug}/edit`;
   },
 
   //   postShow(topicSlug: string, postId: string) {

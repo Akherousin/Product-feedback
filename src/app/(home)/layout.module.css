@@ -1,31 +1,3 @@
-.header {
-  background: radial-gradient(
-    166.82% 166.82% at 103.9% -10.39%,
-    #e84d70 0%,
-    #a337f6 53.09%,
-    #28a7ed 100%
-  );
-  color: hsla(0, 0%, 100%, 1);
-  padding-block: 1rem;
-}
-
-.header h1 {
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: -0.187px;
-}
-
-.header p {
-  font-size: 13px;
-  font-weight: 500;
-  opacity: 0.75;
-}
-
-.header button {
-  border: transparent;
-  background: none;
-}
-
 .actions {
   color: hsla(230, 86%, 97%, 1);
   background-color: hsla(230, 31%, 31%, 1);

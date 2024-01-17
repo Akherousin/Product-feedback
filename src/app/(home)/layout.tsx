@@ -2,6 +2,8 @@ import paths from '@/paths';
 import styles from './layout.module.css';
 import Button from '@/components/Button';
 import Sort from '@/components/Sort';
+import Header from '@/components/Header';
+import RoadmapSummary from '@/components/RoadmapSummary';
 
 export default function HomeLayout({
   children,
@@ -10,25 +12,7 @@ export default function HomeLayout({
 }) {
   return (
     <>
-      <header className={styles.header}>
-        <div className="container flex">
-          <hgroup>
-            <h1>Frontend mentor</h1>
-            <p>Feedback Board</p>
-          </hgroup>
-
-          <nav>
-            <button>
-              <svg width="20" height="17" xmlns="http://www.w3.org/2000/svg">
-                <g fill="#FFF" fillRule="evenodd">
-                  <path d="M0 0h20v3H0zM0 7h20v3H0zM0 14h20v3H0z" />
-                </g>
-              </svg>
-            </button>
-          </nav>
-        </div>
-      </header>
-
+      <Header roadmap={<RoadmapSummary />} />
       <main>
         <div className={`${styles.actions}`}>
           <div className="container flex">

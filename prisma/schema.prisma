@@ -35,24 +35,24 @@ model Request {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   slug        String    @unique
-  category    Category  @default(Feature)
+  category    Category  @default(feature)
   upvotes     Int       @default(0)
-  status      Status    @default(Suggestion)
+  status      Status    @default(suggestion)
   description String
   comments    Comment[]
 }
 
 enum Category {
-  UI
-  UX
-  Enhancement
-  Bug
-  Feature
+  ui
+  ux
+  enhancement
+  bug
+  feature
 }
 
 enum Status {
-  Suggestion
-  Planned
-  Progress
-  Live
+  suggestion
+  planned
+  progress
+  live
 }

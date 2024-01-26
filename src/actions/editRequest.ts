@@ -3,7 +3,7 @@
 import slugify from 'slugify';
 import { type Request } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
+import { RedirectType, redirect } from 'next/navigation';
 import { z } from 'zod';
 import { db } from '@/db';
 import paths from '@/paths';
@@ -17,14 +17,14 @@ interface EditRequestFormState {
 }
 
 const categoryTypeSchema = z.enum([
-  'UX',
-  'UI',
-  'Enhancement',
-  'Bug',
-  'Feature',
+  'ux',
+  'ui',
+  'enhancement',
+  'bug',
+  'feature',
 ]);
 
-const statusTypeSchema = z.enum(['Suggestion', 'Planned', 'Progress', 'Live']);
+const statusTypeSchema = z.enum(['suggestion', 'planned', 'progress', 'live']);
 
 const editRequestSchema = z.object({
   title: z.string().min(1, { message: 'Title cannot be empty' }),
@@ -80,5 +80,5 @@ export async function editRequest(
   }
 
   revalidatePath(paths.home());
-  redirect(paths.showRequestPage(slugify(result.data.title)));
+  redirect(`${paths.showRequestPage(slugify(result.data.title))}?updated=true`);
 }

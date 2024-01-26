@@ -1,16 +1,12 @@
-import Button from '@/components/Button';
 import CreateRequestForm from '@/components/CreateRequestForm';
-import paths from '@/paths';
+import GoBackLink from '@/components/GoBackLink';
 
 export default async function NewRequest() {
   return (
     <>
       <header>
         <div className="container">
-          <Button as="link" href={paths.home()} variant="plain">
-            <ArrowLeftSvg />
-            <span>Go Back</span>
-          </Button>
+          <GoBackLink />
         </div>
       </header>
       <main>
@@ -19,25 +15,5 @@ export default async function NewRequest() {
         </div>
       </main>
     </>
-  );
-}
-
-function ArrowLeftSvg() {
-  return (
-    <svg
-      width="7"
-      height="10"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path
-        d="M6 9L2 5l4-4"
-        stroke="#4661E6"
-        strokeWidth="2"
-        fill="none"
-        fillRule="evenodd"
-      />
-    </svg>
   );
 }

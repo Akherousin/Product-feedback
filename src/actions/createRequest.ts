@@ -17,11 +17,11 @@ interface CreateRequestFormState {
 }
 
 const categoryTypeSchema = z.enum([
-  'UX',
-  'UI',
-  'Enhancement',
-  'Bug',
-  'Feature',
+  'ux',
+  'ui',
+  'enhancement',
+  'bug',
+  'feature',
 ]);
 
 const createRequestSchema = z.object({

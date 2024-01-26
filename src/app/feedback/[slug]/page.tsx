@@ -21,7 +21,10 @@ export default async function RequestPage({ params }: RequestPageProps) {
     <>
       <header className={styles.header}>
         <div className="container flex">
-          <GoBackLink />
+          <Button as="link" href={paths.home()} variant="plain" prefetch={true}>
+            <ArrowLeftSvg />
+            <span>Go Back</span>
+          </Button>
 
           <Button
             variant="blue"
@@ -50,5 +53,25 @@ export default async function RequestPage({ params }: RequestPageProps) {
         </div>
       </main>
     </>
+  );
+}
+
+function ArrowLeftSvg() {
+  return (
+    <svg
+      width="7"
+      height="10"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        d="M6 9L2 5l4-4"
+        stroke="#4661E6"
+        strokeWidth="2"
+        fill="none"
+        fillRule="evenodd"
+      />
+    </svg>
   );
 }

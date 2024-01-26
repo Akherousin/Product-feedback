@@ -1,8 +1,5 @@
-import RequestCard from '@/components/RequestCard';
 import RequestList from '@/components/RequestList';
 import { SortValues } from '@/components/Sort/Sort';
-import { fetchAllRequests } from '@/db/queries/requests';
-import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 export default async function Home({

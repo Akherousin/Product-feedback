@@ -1,28 +1,43 @@
 'use client';
 
 import styles from './TabList.module.css';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import RequestCard from '../RequestCard';
 import { RequestWithCommentCount } from '@/db/queries/requests';
 
+import { useRouter, usePathname } from 'next/navigation';
+
 interface TabListProps {
   requests: RequestWithCommentCount[];
+  defaultTab: number;
 }
 
-function TabList({ requests }: TabListProps) {
-  const [selectedTab, setSelectedTab] = useState(0);
+function TabList({ requests, defaultTab }: TabListProps) {
+  const [selectedTab, setSelectedTab] = useState(defaultTab);
   const [isFirstRender, setIsFirstRender] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
+
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const setSearchParams = useCallback(
+    (value: string) => {
+      const params = new URLSearchParams();
+      params.set('tab', value);
+      router.push(pathname + '?' + params.toString());
+    },
+    [pathname, router]
+  );
 
   let plannedSize = 0;
   let inProgressSize = 0;
   let liveSize = 0;
 
   requests.forEach((request) => {
-    if (request.status === 'Planned') plannedSize++;
-    if (request.status === 'Progress') inProgressSize++;
-    if (request.status === 'Live') liveSize++;
+    if (request.status === 'planned') plannedSize++;
+    if (request.status === 'progress') inProgressSize++;
+    if (request.status === 'live') liveSize++;
   });
 
   useEffect(() => {
@@ -32,9 +47,11 @@ function TabList({ requests }: TabListProps) {
       if (e.key === 'ArrowLeft') {
         const nextSelectedTab = selectedTab <= 0 ? 2 : selectedTab - 1;
         setSelectedTab(nextSelectedTab);
+        setSearchParams(String(nextSelectedTab));
       } else if (e.key === 'ArrowRight') {
         const nextSelectedTab = selectedTab >= 2 ? 0 : selectedTab + 1;
         setSelectedTab(nextSelectedTab);
+        setSearchParams(String(nextSelectedTab));
       }
 
       setIsFirstRender(false);
@@ -47,7 +64,7 @@ function TabList({ requests }: TabListProps) {
     return () => {
       tablist?.removeEventListener('keydown', handleKeys);
     };
-  }, [ref, selectedTab]);
+  }, [ref, selectedTab, setSearchParams]);
 
   useEffect(() => {
     if (ref && !isFirstRender) {
@@ -67,7 +84,10 @@ function TabList({ requests }: TabListProps) {
         aria-controls="tabpanel"
         aria-selected={selectedTab == 0}
         tabIndex={selectedTab === 0 ? 0 : -1}
-        onClick={() => setSelectedTab(0)}
+        onClick={() => {
+          setSelectedTab(0);
+          setSearchParams('0');
+        }}
       >
         Planned({plannedSize})
       </button>
@@ -77,7 +97,10 @@ function TabList({ requests }: TabListProps) {
         aria-controls="tabpanel"
         aria-selected={selectedTab === 1}
         tabIndex={selectedTab === 1 ? 0 : -1}
-        onClick={() => setSelectedTab(1)}
+        onClick={() => {
+          setSelectedTab(1);
+          setSearchParams('1');
+        }}
       >
         In-Progress({inProgressSize})
       </button>
@@ -87,7 +110,10 @@ function TabList({ requests }: TabListProps) {
         aria-controls="tabpanel"
         aria-selected={selectedTab === 2}
         tabIndex={selectedTab === 2 ? 0 : -1}
-        onClick={() => setSelectedTab(2)}
+        onClick={() => {
+          setSelectedTab(2);
+          setSearchParams('2');
+        }}
       >
         Live({liveSize})
       </button>
@@ -108,11 +134,11 @@ function TabList({ requests }: TabListProps) {
           {requests
             .filter((request) => {
               if (selectedTab === 0) {
-                return request.status === 'Planned';
+                return request.status === 'planned';
               } else if (selectedTab === 1) {
-                return request.status === 'Progress';
+                return request.status === 'progress';
               } else if (selectedTab === 2) {
-                return request.status === 'Live';
+                return request.status === 'live';
               }
             })
             .map((filteredRequest) => {

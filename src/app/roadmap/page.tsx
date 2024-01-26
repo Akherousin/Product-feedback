@@ -4,8 +4,15 @@ import styles from './page.module.css';
 import TabList from '@/components/TabList';
 import { fetchAllRequests } from '@/db/queries/requests';
 
-export default async function RoadmapPage() {
+export default async function RoadmapPage({
+  searchParams,
+}: {
+  searchParams: {
+    tab: string;
+  };
+}) {
   const requests = await fetchAllRequests();
+  const defaultTab = +searchParams.tab || 0;
 
   return (
     <>
@@ -26,7 +33,7 @@ export default async function RoadmapPage() {
         </div>
       </header>
       <main className="container">
-        <TabList requests={requests} />
+        <TabList requests={requests} defaultTab={defaultTab} />
       </main>
     </>
   );

@@ -21,6 +21,7 @@ export const fetchCommentsByRequestId = cache((requestId: string) => {
           image: true,
           name: true,
           username: true,
+          likedRequests: true,
         },
       },
       parent: {

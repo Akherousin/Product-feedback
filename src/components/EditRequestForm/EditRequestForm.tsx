@@ -10,26 +10,27 @@ import { useRef, useState } from 'react';
 import paths from '@/paths';
 import FormButton from '../FormButton';
 import { useFocusOnInvalidInput } from '@/hooks/useFocusOnInvalidInput.hook';
+import { usePathname, useRouter } from 'next/navigation';
 
 const categoryOptions: {
   label: string;
   value: Category;
 }[] = [
-  { label: 'UI', value: 'UI' },
-  { label: 'UX', value: 'UX' },
-  { label: 'Enhancement', value: 'Enhancement' },
-  { label: 'Bug', value: 'Bug' },
-  { label: 'Feature', value: 'Feature' },
+  { label: 'UI', value: 'ui' },
+  { label: 'UX', value: 'ux' },
+  { label: 'Enhancement', value: 'enhancement' },
+  { label: 'Bug', value: 'bug' },
+  { label: 'Feature', value: 'feature' },
 ];
 
 const statusOptions: {
   label: string;
   value: Status;
 }[] = [
-  { label: 'Suggestion', value: 'Suggestion' },
-  { label: 'Planned', value: 'Planned' },
-  { label: 'Progress', value: 'Progress' },
-  { label: 'Live', value: 'Live' },
+  { label: 'Suggestion', value: 'suggestion' },
+  { label: 'Planned', value: 'planned' },
+  { label: 'Progress', value: 'progress' },
+  { label: 'Live', value: 'live' },
 ];
 
 interface EditRequestFormProps {
@@ -55,7 +56,6 @@ function EditRequestForm({
       errors: {},
     }
   );
-
   const formRef = useRef<HTMLFormElement>(null);
 
   const deleteRequestAction = async () => await actions.deleteRequest(id);

@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import avatarImg from '@/assets/user-images/image-anne.jpg';
 import styles from './CommentCard.module.css';
 import { useState } from 'react';
 import CreateCommentForm from '../CreateCommentForm';
@@ -47,7 +46,12 @@ function CommentCard({
     <article className={`${styles.comment}`}>
       <header>
         <div className={styles.avatar}>
-          <Image src={avatarImg} alt="" />
+          <Image
+            src={`/user-images/${comment.user.image}.jpg`}
+            alt=""
+            width={40}
+            height={40}
+          />
         </div>
         <div className={styles.authorInfo}>
           <p className={styles.author}>{comment.user.name}</p>
@@ -71,7 +75,9 @@ function CommentCard({
         <CreateCommentForm
           variant="reply"
           replyingToId={comment.id}
-          parentUserName={comment.parent?.user.username}
+          parentUserName={
+            comment.parent?.user.username || comment.user.username
+          }
           requestId={comment.requestId}
           hideForm={() => setShowForm(false)}
           addOptimisticComment={addOptimisticComment}

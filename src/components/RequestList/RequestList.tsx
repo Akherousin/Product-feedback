@@ -2,13 +2,15 @@ import { fetchAllRequests } from '@/db/queries/requests';
 import { notFound } from 'next/navigation';
 import RequestCard from '../RequestCard';
 import { SortValues } from '../Sort/Sort';
+import { Category } from '@prisma/client';
 
 interface RequestListProps {
   sortBy: SortValues;
+  filter?: Category;
 }
 
-async function RequestList({ sortBy }: RequestListProps) {
-  const requests = await fetchAllRequests(sortBy);
+async function RequestList({ sortBy, filter }: RequestListProps) {
+  const requests = await fetchAllRequests(sortBy, filter);
 
   if (requests.length < 1) notFound();
 

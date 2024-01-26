@@ -1,6 +1,6 @@
 import { db } from '..';
 import { cache } from 'react';
-import { Request } from '@prisma/client';
+import { Category, Request } from '@prisma/client';
 import { SortValues } from '@/components/Sort/Sort';
 
 export type RequestWithCommentCount = Request & {
@@ -10,7 +10,10 @@ export type RequestWithCommentCount = Request & {
 };
 
 export const fetchAllRequests = cache(
-  (sortBy?: SortValues ): Promise<RequestWithCommentCount[]> => {
+  (
+    sortBy?: SortValues,
+    filter?: Category
+  ): Promise<RequestWithCommentCount[]> => {
     let sort;
     switch (sortBy) {
       case 'lu': {
@@ -41,9 +44,18 @@ export const fetchAllRequests = cache(
         };
         break;
       }
+      default: {
+        sort = {
+          upvotes: 'desc' as const,
+        };
+        break;
+      }
     }
 
     return db.request.findMany({
+      where: {
+        category: filter,
+      },
       include: {
         _count: {
           select: {

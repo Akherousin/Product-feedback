@@ -20,7 +20,12 @@ export default async function EditRequestPage({
     <>
       <header>
         <div className="container">
-          <Button as="link" href={paths.home()} variant="plain">
+          <Button
+            as="link"
+            href={paths.showRequestPage(params.slug)}
+            variant="plain"
+            prefetch={true}
+          >
             <ArrowLeftSvg />
             <span>Go Back</span>
           </Button>

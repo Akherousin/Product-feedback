@@ -15,11 +15,11 @@ const options: {
   label: string;
   value: Category;
 }[] = [
-  { label: 'UI', value: 'UI' },
-  { label: 'UX', value: 'UX' },
-  { label: 'Enhancement', value: 'Enhancement' },
-  { label: 'Bug', value: 'Bug' },
-  { label: 'Feature', value: 'Feature' },
+  { label: 'UI', value: 'ui' },
+  { label: 'UX', value: 'ux' },
+  { label: 'Enhancement', value: 'enhancement' },
+  { label: 'Bug', value: 'bug' },
+  { label: 'Feature', value: 'feature' },
 ];
 
 function CreateRequestForm() {

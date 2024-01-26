@@ -10,9 +10,9 @@ async function RoadmapSummary() {
   let liveSize = 0;
 
   requests.forEach((request) => {
-    if (request.status === 'Planned') plannedSize++;
-    if (request.status === 'Progress') inProgressSize++;
-    if (request.status === 'Live') liveSize++;
+    if (request.status === 'planned') plannedSize++;
+    if (request.status === 'progress') inProgressSize++;
+    if (request.status === 'live') liveSize++;
   });
 
   return (

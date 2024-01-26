@@ -1,10 +1,10 @@
 import { User } from '@prisma/client';
 
 const CURRENT_USER: User = {
-  id: '6595d83e8755bce7a4508d31',
-  name: 'Stupid User',
-  username: 'User',
-  image: null,
+  id: '65b3de3255757fab4f6ae0c0',
+  name: 'Zena Kelley',
+  username: 'velvetround',
+  image: 'image-zena',
   likedRequests: [],
 };
 

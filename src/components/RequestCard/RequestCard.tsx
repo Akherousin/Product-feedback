@@ -33,7 +33,7 @@ function RequestCard({
       {level === 3 && <h3 className={styles.title}>{title}</h3>}
       <p className={styles.description}>{description}</p>
       <NavLink className={styles.category} href={`/${category.toLowerCase()}`}>
-        {category}
+        {category.length <= 2 ? category.toUpperCase() : category}
       </NavLink>
 
       <UpvoteButton initialUpvotes={upvotes} requestId={id} />

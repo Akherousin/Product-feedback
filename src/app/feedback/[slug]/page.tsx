@@ -6,6 +6,8 @@ import RequestCard from '@/components/RequestCard';
 import { notFound } from 'next/navigation';
 import CommentList from '@/components/CommentList/CommentList';
 import GoBackLink from '@/components/GoBackLink/GoBackLink';
+import { Suspense } from 'react';
+import SkeletonCommentList from '@/components/SkeletonCommentList';
 
 interface RequestPageProps {
   params: {
@@ -21,10 +23,7 @@ export default async function RequestPage({ params }: RequestPageProps) {
     <>
       <header className={styles.header}>
         <div className="container flex">
-          <Button as="link" href={paths.home()} variant="plain" prefetch={true}>
-            <ArrowLeftSvg />
-            <span>Go Back</span>
-          </Button>
+          <GoBackLink variant="plain" />
 
           <Button
             variant="blue"
@@ -48,7 +47,10 @@ export default async function RequestPage({ params }: RequestPageProps) {
             comments={request.comments.length}
           />
           <section>
-            <CommentList requestId={request.id} />
+            <Suspense fallback={null}>
+              <CommentList requestId={request.id} />
+            </Suspense>
+            {/* <SkeletonCommentList /> */}
           </section>
         </div>
       </main>

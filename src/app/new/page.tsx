@@ -6,7 +6,7 @@ export default async function NewRequest() {
     <>
       <header>
         <div className="container">
-          <GoBackLink />
+          <GoBackLink variant="plain" />
         </div>
       </header>
       <main>

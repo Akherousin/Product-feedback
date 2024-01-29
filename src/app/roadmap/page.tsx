@@ -3,6 +3,7 @@ import paths from '@/paths';
 import styles from './page.module.css';
 import TabList from '@/components/TabList';
 import { fetchAllRequests } from '@/db/queries/requests';
+import GoBackLink from '@/components/GoBackLink';
 
 export default async function RoadmapPage({
   searchParams,
@@ -19,11 +20,7 @@ export default async function RoadmapPage({
       <header className={styles.header}>
         <div className="container flex">
           <div>
-            <Button as="link" href={paths.home()} variant="dark-grey">
-              <ArrowLeftSvg />
-              <span>Go Back</span>
-            </Button>
-
+            <GoBackLink variant="dark-grey" />
             <h1 className={styles.title}>Roadmap</h1>
           </div>
 
@@ -36,25 +33,5 @@ export default async function RoadmapPage({
         <TabList requests={requests} defaultTab={defaultTab} />
       </main>
     </>
-  );
-}
-
-function ArrowLeftSvg() {
-  return (
-    <svg
-      width="7"
-      height="10"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path
-        d="M6 9L2 5l4-4"
-        stroke="#CDD2EE"
-        strokeWidth="2"
-        fill="none"
-        fillRule="evenodd"
-      />
-    </svg>
   );
 }

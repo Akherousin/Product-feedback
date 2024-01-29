@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import EditRequestForm from '@/components/EditRequestForm';
+import GoBackLink from '@/components/GoBackLink';
 import { fetchRequest } from '@/db/queries/requests';
 import paths from '@/paths';
 import { notFound } from 'next/navigation';
@@ -20,15 +21,7 @@ export default async function EditRequestPage({
     <>
       <header>
         <div className="container">
-          <Button
-            as="link"
-            href={paths.showRequestPage(params.slug)}
-            variant="plain"
-            prefetch={true}
-          >
-            <ArrowLeftSvg />
-            <span>Go Back</span>
-          </Button>
+          <GoBackLink variant="plain" />
         </div>
       </header>
       <main>

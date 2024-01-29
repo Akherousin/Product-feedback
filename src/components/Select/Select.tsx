@@ -138,7 +138,9 @@ const Select = ({
           aria-haspopup="listbox"
           aria-controls="select-dropdown"
           aria-expanded={isOpen}
-          aria-activedescendant={`option-${highlightedOptionIndex}`}
+          aria-activedescendant={
+            isOpen ? `option-${highlightedOptionIndex}` : undefined
+          }
           aria-labelledby={labelledby}
           aria-describedby={describedby}
           onClick={toggleOpen}

@@ -1,17 +1,12 @@
-import { fetchAllRequests } from '@/db/queries/requests';
+import { RequestWithCommentCount } from '@/db/queries/requests';
 import { notFound } from 'next/navigation';
 import RequestCard from '../RequestCard';
-import { SortValues } from '../Sort/Sort';
-import { Category } from '@prisma/client';
 
 interface RequestListProps {
-  sortBy: SortValues;
-  filter?: Category;
+  requests: RequestWithCommentCount[];
 }
 
-async function RequestList({ sortBy, filter }: RequestListProps) {
-  const requests = await fetchAllRequests(sortBy, filter);
-
+async function RequestList({ requests }: RequestListProps) {
   if (requests.length < 1) notFound();
 
   return (

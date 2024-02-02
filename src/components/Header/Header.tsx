@@ -6,6 +6,7 @@ import NavLink from '../NavLink';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside.hook';
 import { useTrapFocus } from '@/hooks/useTrapFocus.hook';
 import { useEscapeKey } from '@/hooks/useEscapeKey.hook';
+import paths from '@/paths';
 
 interface HeaderProps {
   roadmap: React.ReactNode;
@@ -17,10 +18,14 @@ function Header({ roadmap }: HeaderProps) {
   const btnRef = useRef<HTMLButtonElement>(null);
   const navRef = useRef<HTMLElement>(null);
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   useOnClickOutside(menuRef, (e) => {
     const target = e.target;
     if (target !== btnRef.current && isOpen) {
-      setIsOpen(false);
+      closeMenu();
     }
   });
 
@@ -36,7 +41,7 @@ function Header({ roadmap }: HeaderProps) {
   useTrapFocus(navRef, isOpen);
   useEscapeKey(navRef, () => {
     if (isOpen) {
-      setIsOpen(false);
+      closeMenu();
     }
   });
 
@@ -73,22 +78,40 @@ function Header({ roadmap }: HeaderProps) {
             <div className={`${styles.menu}`} ref={menuRef} id="menu">
               <ul className={`${styles.links} | box`}>
                 <li>
-                  <NavLink href="/">All</NavLink>
+                  <NavLink href={paths.home()} onClick={closeMenu}>
+                    All
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink href="/ui">UI</NavLink>
+                  <NavLink href={paths.homeFiltered('ui')} onClick={closeMenu}>
+                    UI
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink href="/ux">UX</NavLink>
+                  <NavLink href={paths.homeFiltered('ux')} onClick={closeMenu}>
+                    UX
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink href="/enhancement">Enhancement</NavLink>
+                  <NavLink
+                    href={paths.homeFiltered('enhancement')}
+                    onClick={closeMenu}
+                  >
+                    Enhancement
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink href="/bug">Bug</NavLink>
+                  <NavLink href={paths.homeFiltered('bug')} onClick={closeMenu}>
+                    Bug
+                  </NavLink>
                 </li>
                 <li>
-                  <NavLink href="/feature">Feature</NavLink>
+                  <NavLink
+                    href={paths.homeFiltered('feature')}
+                    onClick={closeMenu}
+                  >
+                    Feature
+                  </NavLink>
                 </li>
               </ul>
 

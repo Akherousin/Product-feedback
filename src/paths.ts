@@ -1,6 +1,12 @@
+import { Category } from '@prisma/client';
+
 const paths = {
   home() {
     return '/';
+  },
+
+  homeFiltered(filter: Category) {
+    return `/${filter}`;
   },
 
   createRequest() {

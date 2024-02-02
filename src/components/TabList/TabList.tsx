@@ -25,7 +25,7 @@ function TabList({ requests, defaultTab }: TabListProps) {
     (value: string) => {
       const params = new URLSearchParams();
       params.set('tab', value);
-      router.push(pathname + '?' + params.toString());
+      router.replace(pathname + '?' + params.toString());
     },
     [pathname, router]
   );

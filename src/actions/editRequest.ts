@@ -80,5 +80,7 @@ export async function editRequest(
   }
 
   revalidatePath(paths.home());
+  revalidatePath(paths.homeFiltered(result.data.category));
+
   redirect(`${paths.showRequestPage(slugify(result.data.title))}?updated=true`);
 }

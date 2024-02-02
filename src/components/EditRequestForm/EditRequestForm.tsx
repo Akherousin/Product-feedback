@@ -154,7 +154,11 @@ function EditRequestForm({
         >
           Save Changes
         </FormButton>
-        <Button variant="grey" as="link" href={paths.showRequestPage(slug)}>
+        <Button
+          variant="grey"
+          as="link"
+          href={`${paths.showRequestPage(slug)}?updated=true`}
+        >
           Cancel
         </Button>
         <FormButton

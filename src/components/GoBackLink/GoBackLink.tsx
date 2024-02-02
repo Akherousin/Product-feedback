@@ -1,8 +1,8 @@
 'use client';
 
-import paths from '@/paths';
 import Button from '../Button';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 interface GoBackLinkProps {
   variant: 'dark-grey' | 'plain';
@@ -21,7 +21,9 @@ function GoBackLink({ variant }: GoBackLinkProps) {
       onClick={(e) => {
         e.preventDefault();
         if (goToHomePage) {
-          router.push(paths.home());
+          router.back();
+          router.back();
+          router.back();
         } else {
           router.back();
         }
@@ -30,6 +32,14 @@ function GoBackLink({ variant }: GoBackLinkProps) {
       <ArrowLeftSvg variant={variant} />
       <span>Go Back</span>
     </Button>
+  );
+}
+
+function SuspensedGoBackLink({ variant }: GoBackLinkProps) {
+  return (
+    <Suspense fallback={null}>
+      <GoBackLink variant={variant} />
+    </Suspense>
   );
 }
 
@@ -53,4 +63,4 @@ function ArrowLeftSvg({ variant }: GoBackLinkProps) {
   );
 }
 
-export default GoBackLink;
+export default SuspensedGoBackLink;

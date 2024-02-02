@@ -4,6 +4,7 @@ import { ChangeEvent } from 'react';
 import Select from '../Select';
 import styles from './Sort.module.css';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 export type SortValues = 'mu' | 'lu' | 'mc' | 'lc';
 
@@ -47,4 +48,12 @@ function Sort() {
   );
 }
 
-export default Sort;
+function SuspensedSort() {
+  return (
+    <Suspense fallback={null}>
+      <Sort />
+    </Suspense>
+  );
+}
+
+export default SuspensedSort;

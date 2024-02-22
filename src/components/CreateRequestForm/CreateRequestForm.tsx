@@ -31,68 +31,64 @@ function CreateRequestForm() {
   useFocusOnInvalidInput(formRef);
 
   return (
-    <form
-      className={`${styles.form} | box column`}
-      action={action}
-      ref={formRef}
-    >
+    <form className={`${styles.form} | box`} action={action} ref={formRef}>
       <NewSvg />
-      <h1 className={styles.title}>Create New Feedback</h1>
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="title">
+      <h1>Create New Feedback</h1>
+      <div className="field">
+        <label htmlFor="title" className="h4 color-heading">
           {' '}
           Feedback Title
         </label>
-        <p id="title-description" className={styles.description}>
-          Add a short descriptive headline
-        </p>
+        <p id="title-description">Add a short descriptive headline</p>
         <input
           type="text"
           id="title"
           name="title"
-          className={styles.input}
           aria-invalid={formState.errors.title ? true : undefined}
           aria-describedby="title-error-message title-description"
+          className="input"
         />
-        <p id="title-error-message" aria-live="assertive">
+        <p id="title-error-message" aria-live="assertive" className="error">
           {formState.errors.title && formState.errors.title.join(', ')}
         </p>
       </div>
-      <div className={styles.field}>
-        <label className={styles.label} id="category-label">
+      <div className="field">
+        <label id="category-label" className="h4 color-heading">
           Category
         </label>
-        <p className={styles.description} id="category-description">
-          Choose a category for your feedback
-        </p>
+        <p id="category-description">Choose a category for your feedback</p>
         <Select
           options={options}
-          className={styles.input}
+          className="input"
           name="category"
           labelledby="category-label"
           describedby="category-description"
         />
       </div>
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="description">
+      <div className="field">
+        <label htmlFor="description" className="h4 color-heading">
           Feedback Detail
         </label>
-        <p className={styles.description} id="description-description">
+        <p id="description-description">
           Include any specific comments on what should be improved, added, etc.
         </p>
         <textarea
-          className={styles.input}
           id="description"
           name="description"
+          className="input"
           aria-invalid={formState.errors.description ? true : undefined}
           aria-describedby="description-error-message description-description"
         />
-        <p id="description-error-message" aria-live="assertive">
+        <p
+          id="description-error-message"
+          aria-live="assertive"
+          className="error"
+        >
           {formState.errors.description &&
             formState.errors.description.join(', ')}
         </p>
       </div>
-      <div className={`${styles.buttons} | column`}>
+      <div className={styles.buttons}>
         <FormButton
           variant="purple"
           type="submit"
@@ -112,8 +108,6 @@ function CreateRequestForm() {
 function NewSvg() {
   return (
     <svg
-      width="56"
-      height="56"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       focusable="false"

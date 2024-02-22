@@ -1,3 +1,35 @@
+.wrapper {
+  max-inline-size: 45.625rem;
+  margin-inline: auto;
+}
+
 .header {
-  padding-block: 24px;
+  padding-block: 80px 24px;
+}
+
+.comments {
+  margin-block-start: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media screen and (max-width: 59.375em) {
+  .wrapper {
+    padding-inline: 39px 40px;
+  }
+
+  .header {
+    padding-block-start: 56px;
+  }
+}
+
+@media screen and (max-width: 32.1875em) {
+  .wrapper {
+    padding-inline: 24px;
+  }
+
+  .header {
+    padding-block-start: 24px;
+  }
 }

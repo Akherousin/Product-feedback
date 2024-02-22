@@ -133,7 +133,7 @@ const Select = ({
       >
         <button
           type="button"
-          className={`${className ? className : ''} ${styles.combobox} | flex`}
+          className={`${className ? className : ''} | flex`}
           role="combobox"
           aria-haspopup="listbox"
           aria-controls="select-dropdown"
@@ -154,7 +154,7 @@ const Select = ({
             role="listbox"
             className={`${styles.dropdown} ${
               dropdownClassName ? dropdownClassName : ''
-            }`}
+            } | box`}
             id="select-dropdown"
             tabIndex={-1}
           >

@@ -1,66 +1,157 @@
 .request {
+  position: relative;
+
   display: grid;
   grid-template-areas:
+    'upvotes title comments'
+    'upvotes content comments'
+    'upvotes category comments';
+  grid-template-columns: 2.5rem 1fr auto;
+  row-gap: 0.5rem;
+  column-gap: 2.5rem;
+
+  padding: 28px 32px;
+}
+
+.request[data-decorated] {
+  position: relative;
+  overflow: hidden;
+  grid-template-areas:
+    'status status'
     'title title'
     'content content'
     'category category'
     'upvotes comments';
-  justify-items: start;
-  row-gap: 0.5rem;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  padding: 32px;
+}
+
+.request[data-decorated]::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 6px;
+}
+
+.request[data-status='planned']::before,
+.request[data-status='planned'] .status::before {
+  background-color: var(--color-accent-2);
+}
+
+.request[data-status='progress']::before,
+.request[data-status='progress'] .status::before {
+  background-color: var(--color-accent-1);
+}
+
+.request[data-status='live']::before,
+.request[data-status='live'] .status::before {
+  background-color: var(--color-accent-3);
+}
+
+.status {
+  grid-area: status;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-block-end: -0.5rem;
+}
+
+.status::before {
+  content: '';
+  display: inline-block;
+  inline-size: 8px;
+  block-size: 8px;
+  border-radius: 50%;
+  background-color: red;
 }
 
 .title {
   grid-area: title;
-  color: hsla(231, 33%, 34%, 1);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: -0.181px;
+  color: var(--color-heading);
+}
+
+.title a:link,
+.title a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.title a:hover,
+.title a:active {
+  color: var(--color-action);
+}
+
+.title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
 }
 
 .category {
+  position: relative;
   grid-area: category;
   text-transform: capitalize;
+  justify-self: start;
 }
 
 .description {
   grid-area: content;
-  color: hsla(224, 20%, 49%, 1);
-  font-size: 13px;
-  font-weight: 400;
 }
 
-.upvotesButton {
+.request[data-decorated] > button {
+  flex-direction: row;
+  padding: 11px 15.5px 10px 16px;
+}
+
+.request > button {
   grid-area: upvotes;
-  display: inline-flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-
-  padding-block: 6px 7px;
-  padding-inline: 16px 13px;
-  border: transparent;
-
-  color: hsla(231, 33%, 34%, 1);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: -0.181px;
+  align-self: start;
+  position: relative;
 }
 
-.commentsLink {
+.request[data-decorated] .comments {
   justify-self: end;
+}
+
+.comments {
   grid-area: comments;
+  align-self: center;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-
-  color: hsla(231, 33%, 34%, 1);
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: -0.222px;
+  gap: 0.5rem;
+  color: var(--color-heading);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
   text-decoration: none;
 }
 
-.upvotesButton,
-.commentsLink {
-  margin-block-start: 0.5rem;
+@media screen and (max-width: 32.1875em) {
+  .request {
+    grid-template-areas:
+      'title title'
+      'content content'
+      'category category'
+      'upvotes comments';
+    grid-template-columns: auto 1fr;
+    padding: 24px;
+  }
+
+  .request > button {
+    flex-direction: row;
+    padding: 11px 15.5px 10px 16px;
+  }
+
+  .comments {
+    justify-self: end;
+    font-size: var(--font-size-body-3);
+  }
+
+  .request > button,
+  .comments {
+    margin-block-start: 0.5rem;
+  }
 }

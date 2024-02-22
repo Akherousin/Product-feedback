@@ -1,15 +1,30 @@
-.upvotesButton {
+.button {
   display: inline-flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 0.5rem;
   align-items: center;
   justify-content: center;
 
-  padding-block: 6px 7px;
-  padding-inline: 16px 13px;
+  padding: 14px 9px 8px;
   border: transparent;
+  border-radius: 10px;
 
-  color: hsla(231, 33%, 34%, 1);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: -0.181px;
+  color: var(--color-heading);
+  background-color: hsl(230, 86%, 97%);
+  font-size: var(--font-size-body-3);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
+}
+
+.button:hover {
+  background-color: hsl(230, 100%, 91%);
+}
+
+.button[data-upvoted='true'] {
+  background-color: var(--color-action);
+  color: var(--color-white);
+}
+
+.button[data-upvoted='true'] path {
+  stroke: currentColor;
 }

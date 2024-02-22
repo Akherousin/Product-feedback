@@ -2,7 +2,7 @@ import Button from '@/components/Button';
 import EditRequestForm from '@/components/EditRequestForm';
 import GoBackLink from '@/components/GoBackLink';
 import { fetchRequest } from '@/db/queries/requests';
-import paths from '@/paths';
+import styles from './page.module.css';
 import { notFound } from 'next/navigation';
 
 interface EditRequestPageProps {
@@ -18,25 +18,21 @@ export default async function EditRequestPage({
   if (!request) notFound();
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <header>
-        <div className="container">
-          <GoBackLink variant="plain" />
-        </div>
+        <GoBackLink variant="plain" />
       </header>
       <main>
-        <div className="container ">
-          <EditRequestForm
-            id={request.id}
-            slug={request.slug}
-            title={request.title}
-            description={request.description}
-            category={request.category}
-            status={request.status}
-          />
-        </div>
+        <EditRequestForm
+          id={request.id}
+          slug={request.slug}
+          title={request.title}
+          description={request.description}
+          category={request.category}
+          status={request.status}
+        />
       </main>
-    </>
+    </div>
   );
 }
 

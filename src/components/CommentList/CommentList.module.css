@@ -1,19 +1,22 @@
-.comments__wrapper {
-  margin-block-start: 24px;
-}
-
-.title {
-  color: #3a4374;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.25px;
+.wrapper {
+  padding: 24px 32px 33px;
 }
 
 .comments {
+  margin-block-start: 1.75rem;
   list-style: none;
 }
 
+.heading {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
 .comments > * + * {
-  margin-block-start: 24px;
+  --gap: 1.5rem;
+
+  margin-block-start: var(--gap);
+  padding-block-start: var(--gap);
   border-block-start: 1px solid hsla(231, 20%, 63%, 0.25);
 }

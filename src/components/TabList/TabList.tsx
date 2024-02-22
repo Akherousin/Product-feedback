@@ -88,6 +88,7 @@ function TabList({ requests, defaultTab }: TabListProps) {
           setSelectedTab(0);
           setSearchParams('0');
         }}
+        data-status="planned"
       >
         Planned({plannedSize})
       </button>
@@ -101,6 +102,7 @@ function TabList({ requests, defaultTab }: TabListProps) {
           setSelectedTab(1);
           setSearchParams('1');
         }}
+        data-status="progress"
       >
         In-Progress({inProgressSize})
       </button>
@@ -114,6 +116,7 @@ function TabList({ requests, defaultTab }: TabListProps) {
           setSelectedTab(2);
           setSearchParams('2');
         }}
+        data-status="live"
       >
         Live({liveSize})
       </button>
@@ -149,10 +152,13 @@ function TabList({ requests, defaultTab }: TabListProps) {
                     title={filteredRequest.title}
                     description={filteredRequest.description}
                     upvotes={filteredRequest.upvotes}
+                    status={filteredRequest.status}
                     category={filteredRequest.category}
                     slug={filteredRequest.slug}
                     comments={filteredRequest._count.comments}
                     level={3}
+                    asLink={true}
+                    decorated={true}
                   />
                 </li>
               );

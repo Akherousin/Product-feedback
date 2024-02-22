@@ -1,73 +1,46 @@
-.title {
-  color: hsla(231, 33%, 34%, 1);
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.25px;
-  margin-block-start: 20px;
-}
-
 .form {
-  --column-gap: 24px;
-
   position: relative;
-  font-size: 13px;
-  font-weight: 400;
-  margin-block-start: 55px;
+  padding: 52px 42px 40px;
+  font-size: var(--font-size-h4);
+  position: relative;
 }
 
-.form > svg:first-child {
+.form > svg {
   position: absolute;
-  left: 24px;
   top: 0;
   transform: translateY(-50%);
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-}
-
-.field > *:last-child {
-  margin-block-start: 1rem;
-}
-
-.label {
-  color: hsla(231, 33%, 34%, 1);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: -0.181px;
-}
-
-.description {
-  color: hsla(224, 20%, 49%, 1);
-  font-size: 13px;
-  font-weight: 400;
-}
-
-.input {
-  padding: 13px;
-  border-radius: 5px;
-  color: hsla(231, 33%, 34%, 1);
-  background-color: hsla(230, 60%, 98%, 1);
-  outline: none;
-  border: 1px solid transparent;
-  width: 100%;
-}
-
-.input:focus {
-  border-color: hsla(230, 76%, 59%, 1);
-}
-
-.input:invalid {
-  border-color: hsla(0, 67%, 53%, 1);
-}
-
-textarea.input {
-  resize: none;
-  min-height: 96px;
+.form :global(.field:first-of-type) {
+  margin-block-start: 4.6875rem;
 }
 
 .buttons {
-  --column-gap: 16px;
-  margin-block-start: 16px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 5.8125rem 1fr 5.8125rem 9rem;
+  margin-block-start: 2rem;
+}
+
+.buttons > button:first-of-type {
+  grid-column: -2/ -1;
+  grid-row: 1;
+}
+
+.buttons > a {
+  grid-column: -3/ -2;
+  grid-row: 1;
+}
+
+.buttons > button:last-of-type {
+  grid-column: 1/ 2;
+  grid-row: 1;
+}
+
+@media screen and (max-width: 32.1875em) {
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    margin-block-start: 2.5rem;
+  }
 }

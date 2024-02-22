@@ -69,83 +69,81 @@ function EditRequestForm({
       ref={formRef}
     >
       <EditSvg />
-      <h1 className={styles.title}>Editing &apos;{title}&apos;</h1>
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="title">
+      <h1 className="h1">Editing &apos;{title}&apos;</h1>
+      <div className="field">
+        <label className="h4 color-heading" htmlFor="title">
           {' '}
           Feedback Title
         </label>
-        <p id="title-description" className={styles.description}>
-          Add a short descriptive headline
-        </p>
+        <p id="title-description">Add a short descriptive headline</p>
         <input
           type="text"
           id="title"
           name="title"
-          className={styles.input}
           defaultValue={title}
           aria-invalid={formState.errors.title ? true : undefined}
           aria-describedby="title-error-message title-description"
+          className="input"
         />
-        <p id="title-error-message" aria-live="assertive">
+        <p id="title-error-message" aria-live="assertive" className="error">
           {formState.errors.title && formState.errors.title.join(', ')}
         </p>
       </div>
-      <div className={styles.field}>
-        <label className={styles.label} id="category-label">
+      <div className="field">
+        <label className="h4 color-heading" id="category-label">
           Category
         </label>
-        <p className={styles.description} id="category-description">
-          Choose a category for your feedback
-        </p>
+        <p id="category-description">Choose a category for your feedback</p>
         <Select
           initialValue={category}
           options={categoryOptions}
-          className={styles.input}
           name="category"
           labelledby="category-label"
           describedby="category-description"
+          className="input"
         />
       </div>
 
-      <div className={styles.field}>
-        <label className={styles.label} id="status-label">
+      <div className="field">
+        <label className="h4 color-heading" id="status-label">
           Update Status
         </label>
-        <p className={styles.description} id="status-description">
-          Change feature state
-        </p>
+        <p id="status-description">Change feature state</p>
         <Select
           initialValue={status}
           options={statusOptions}
-          className={styles.input}
           name="status"
           labelledby="status-label"
           describedby="status-description"
+          className="input"
         />
       </div>
 
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="description">
+      <div className="field">
+        <label className="h4 color-heading" htmlFor="description">
           Feedback Detail
         </label>
-        <p className={styles.description} id="description-description">
+        <p id="description-description">
           Include any specific comments on what should be improved, added, etc.
         </p>
         <textarea
-          className={styles.input}
           id="description"
           name="description"
           defaultValue={description}
           aria-invalid={formState.errors.description ? true : undefined}
           aria-describedby="description-error-message description-description"
+          className="input"
         />
-        <p id="description-error-message" aria-live="assertive">
+        <p
+          id="description-error-message"
+          aria-live="assertive"
+          className="error"
+        >
           {formState.errors.description &&
             formState.errors.description.join(', ')}
         </p>
       </div>
-      <div className={`${styles.buttons} | column`}>
+      <div className={styles.buttons}>
         <FormButton
           variant="purple"
           type="submit"

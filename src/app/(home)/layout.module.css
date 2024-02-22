@@ -1,10 +1,25 @@
-.actions {
-  color: hsla(230, 86%, 97%, 1);
-  background-color: hsla(230, 31%, 31%, 1);
-  padding-block: 8px;
+.layout {
+  display: grid;
+  grid-template-columns: 15.9375rem 1fr;
+  gap: 30px;
+  box-sizing: content-box;
+  max-inline-size: 69.375rem;
+  margin-inline: auto;
+  padding-block-start: 94px;
+  padding-inline: 40px;
 }
 
-.requests {
-  --column-gap: 16px;
-  padding-block: 32px;
+@media screen and (max-width: 59.375em) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-block-start: 56px;
+  }
+}
+
+@media screen and (max-width: 32.1875em) {
+  .layout {
+    padding: 0;
+    gap: 0;
+  }
 }

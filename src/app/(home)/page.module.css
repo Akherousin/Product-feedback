@@ -1,0 +1,9 @@
+.list {
+  margin-block-start: 1.5rem;
+}
+
+@media screen and (max-width: 32.1875em) {
+  .list {
+    padding-inline: 24px;
+  }
+}

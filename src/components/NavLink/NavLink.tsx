@@ -14,7 +14,9 @@ export function NavLink({ href, className, children, ...rest }: NavLinkProps) {
     <Link
       {...rest}
       href={href}
-      className={`${className ? className : ''} ${styles.navlink} | pill`}
+      className={`${className ? className : ''} ${
+        styles.navlink
+      } | click-target-helper`}
       aria-current={isCurrent ? 'page' : undefined}
     >
       {children}

@@ -1,9 +1,6 @@
 .tablist {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  color: #647196;
-  font-size: 13px;
-  font-weight: 400;
 }
 
 .tab {
@@ -12,10 +9,10 @@
   border-block-end: 1px solid hsla(231, 20%, 63%, 0.5);
   opacity: 0.5;
 
-  color: #3a4374;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: -0.181px;
+  color: var(--color-heading);
+  font-size: inherit;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
   padding-block: 20px;
   position: relative;
 }
@@ -28,10 +25,21 @@
   content: '';
   height: 4px;
   width: 100%;
-  background-color: hsla(282, 83%, 52%, 1);
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+.tab[data-status='planned']::after {
+  background-color: var(--color-accent-2);
+}
+
+.tab[data-status='live']::after {
+  background-color: var(--color-accent-3);
+}
+
+.tab[data-status='progress']::after {
+  background-color: var(--color-accent-1);
 }
 
 .tabpanel {
@@ -39,14 +47,24 @@
 }
 
 .tabpanel__title {
-  color: #3a4374;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.25px;
+  color: var(--color-heading);
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
   margin-block-start: 24px;
 }
 
 .tabpanel__list {
   margin-block-start: 24px;
   list-style: none;
+}
+
+.tabpanel__list > * + * {
+  margin-block-start: 1rem;
+}
+
+@media screen and (max-width: 32.1875em) {
+  .tabpanel {
+    padding-inline: 24px;
+  }
 }

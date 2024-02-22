@@ -1,11 +1,11 @@
 import RequestList from '@/components/RequestList';
-import SkeletonCardList from '@/components/SkeletonCardList';
+import styles from '../page.module.css';
 import { SortValues } from '@/components/Sort/Sort';
 import { fetchAllRequests } from '@/db/queries/requests';
 import { Category } from '@prisma/client';
-import { Suspense } from 'react';
+import ActionsSection from '@/components/ActionsSection/ActionsSection';
 
-export default async function Home({
+export default async function HomeFilter({
   params,
   searchParams,
 }: {
@@ -18,15 +18,14 @@ export default async function Home({
 }) {
   const { sort } = searchParams;
   const { filter } = params;
-  const requests = (await fetchAllRequests(sort, filter)).filter(
-    (request) => request.status === 'suggestion'
-  );
+  const requests = await fetchAllRequests(sort, 'suggestion', filter);
 
   return (
     <>
-      <div className="container column">
-        <RequestList requests={requests} />
-      </div>
+      <ActionsSection suggestions={requests.length} />
+      <section className={styles.list}>
+        <RequestList requests={requests} level={2} />
+      </section>
     </>
   );
 }

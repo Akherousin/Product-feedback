@@ -5,46 +5,46 @@
   border-radius: 10px;
   border: transparent;
   color: hsla(230, 86%, 97%, 1);
-  font-size: 13px;
-  font-weight: 700;
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
   text-decoration: none;
   text-align: center;
-  min-height: 44px;
+  min-height: 2.75rem;
 }
 
 .button[data-variant='purple'] {
-  background-color: hsla(282, 83%, 52%, 1);
+  background-color: var(--color-accent-1);
 }
 .button[data-variant='purple']:hover {
-  background-color: hsla(282, 90%, 66%, 1);
+  background-color: var(--color-accent-light-1);
 }
 
 .button[data-variant='blue'] {
-  background-color: hsla(230, 76%, 59%, 1);
+  background-color: var(--color-action);
 }
 .button[data-variant='blue']:hover {
-  background-color: hsla(230, 91%, 73%, 1);
+  background-color: var(--color-action-light);
 }
 
 .button[data-variant='grey'] {
-  background-color: hsla(231, 33%, 34%, 1);
+  background-color: var(--color-heading);
 }
 .button[data-variant='grey']:hover {
   background-color: hsla(231, 26%, 52%, 1);
 }
 
 .button[data-variant='red'] {
-  background-color: hsla(0, 67%, 53%, 1);
+  background-color: var(--color-danger);
 }
 .button[data-variant='red']:hover {
-  background-color: hsla(0, 69%, 72%, 1);
+  background-color: var(--color-danger-light);
 }
 
 .button[data-variant='dark-grey'] {
   padding: 0;
   min-height: 0;
-  background-color: hsla(230, 31%, 31%, 1);
+  background-color: var(--color-bg-3);
   display: flex;
   gap: 15.67px;
   align-items: center;

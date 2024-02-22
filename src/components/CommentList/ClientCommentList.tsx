@@ -49,8 +49,8 @@ function ClientCommentList({ comments, requestId }: ClientCommentListProps) {
 
   return (
     <>
-      <div className={`${styles.comments__wrapper} | box`}>
-        <h2 className={styles.title}>{optimisticComments.length} Comments</h2>
+      <div className={`${styles.wrapper} | box`}>
+        <h2 className={styles.heading}>{optimisticComments.length} Comments</h2>
         <ul className={styles.comments}>
           {topLevelComments.map((comment) => (
             <li key={comment.id}>

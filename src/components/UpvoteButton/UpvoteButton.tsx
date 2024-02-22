@@ -17,7 +17,8 @@ function UpvoteButton({ initialUpvotes, requestId }: UpvoteButtonProps) {
 
   return (
     <button
-      className={`${styles.upvotesButton} | pill`}
+      className={`${styles.button} | click-target-helper`}
+      data-upvoted={hasBeenUpvoted}
       onClick={async () => {
         if (!hasBeenUpvoted) {
           setUpvotes(upvotes + 1);

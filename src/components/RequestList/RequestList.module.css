@@ -1,0 +1,13 @@
+.list {
+  list-style: none;
+}
+
+.list > * + * {
+  margin-block-start: 1.25rem;
+}
+
+@media screen and (max-width: 59.375em) {
+  .list > * + * {
+    margin-block-start: 1rem;
+  }
+}

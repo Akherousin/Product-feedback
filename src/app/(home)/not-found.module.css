@@ -1,24 +1,42 @@
-.image {
-  margin-block-start: 52px;
-}
-
-.heading {
-  margin-block-start: 23px;
-  color: hsla(231, 33%, 34%, 1);
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.25px;
-}
-
-.text {
-  margin-block-start: -2px;
-  color: #647196;
-  font-size: 13px;
-  font-weight: 400;
+.section {
+  margin-block-start: 1.5rem;
+  padding-block: 111px 110px;
   text-align: center;
 }
 
-.btn {
-  margin-block-start: 4px;
-  margin-block-end: 52px;
+.section > * {
+  max-inline-size: 25.625rem;
+  margin-inline: auto;
+}
+
+.heading {
+  margin-block-start: 3.32875rem;
+}
+
+.text {
+  margin-block-start: 1rem;
+  margin-block-end: 3rem;
+}
+
+@media screen and (max-width: 32.1875em) {
+  .section {
+    margin-block-start: 2rem;
+    margin-inline: 24px;
+    padding-block: 76px;
+    padding-inline: 25px 24px;
+  }
+
+  .section svg {
+    inline-size: 6.375rem;
+    block-size: 6.75rem;
+  }
+
+  .heading {
+    margin-block-start: 2.4375rem;
+  }
+
+  .text {
+    margin-block-start: 0.875rem;
+    margin-block-end: 1.5rem;
+  }
 }

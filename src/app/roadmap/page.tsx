@@ -4,6 +4,7 @@ import styles from './page.module.css';
 import TabList from '@/components/TabList';
 import { fetchAllRequests } from '@/db/queries/requests';
 import GoBackLink from '@/components/GoBackLink';
+import Roadmap from '@/components/Roadmap';
 
 export default async function RoadmapPage({
   searchParams,
@@ -16,22 +17,21 @@ export default async function RoadmapPage({
   const defaultTab = +searchParams.tab || 0;
 
   return (
-    <>
-      <header className={styles.header}>
-        <div className="container flex">
-          <div>
-            <GoBackLink variant="dark-grey" />
-            <h1 className={styles.title}>Roadmap</h1>
-          </div>
-
-          <Button as="link" href={paths.createRequest()} variant="purple">
-            + Add Feedback
-          </Button>
+    <div className={styles.wrapper}>
+      <header className={`${styles.header} | flex`}>
+        <div>
+          <GoBackLink variant="dark-grey" />
+          <h1 className={styles.title}>Roadmap</h1>
         </div>
+
+        <Button as="link" href={paths.createRequest()} variant="purple">
+          + Add Feedback
+        </Button>
       </header>
-      <main className="container">
+      <main className={styles.main}>
+        <Roadmap requests={requests} />
         <TabList requests={requests} defaultTab={defaultTab} />
       </main>
-    </>
+    </div>
   );
 }

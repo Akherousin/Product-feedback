@@ -1,6 +1,6 @@
 import { db } from '..';
 import { cache } from 'react';
-import { Category, Request } from '@prisma/client';
+import { Category, Request, Status } from '@prisma/client';
 import { SortValues } from '@/components/Sort/Sort';
 
 export type RequestWithCommentCount = Request & {
@@ -12,6 +12,7 @@ export type RequestWithCommentCount = Request & {
 export const fetchAllRequests = cache(
   (
     sortBy?: SortValues,
+    status?: Status,
     filter?: Category
   ): Promise<RequestWithCommentCount[]> => {
     let sort;
@@ -55,6 +56,7 @@ export const fetchAllRequests = cache(
     return db.request.findMany({
       where: {
         category: filter,
+        status,
       },
       include: {
         _count: {

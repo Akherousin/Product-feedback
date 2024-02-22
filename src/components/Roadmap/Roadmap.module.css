@@ -1,0 +1,16 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 30px;
+}
+
+.wrapper ul {
+  margin-block-start: 1.5rem;
+}
+
+@media screen and (max-width: 59.375em) {
+  .wrapper {
+    gap: 10px;
+  }
+}

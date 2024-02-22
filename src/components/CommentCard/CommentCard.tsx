@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import styles from './CommentCard.module.css';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import CreateCommentForm from '../CreateCommentForm';
 import { type User, type Comment } from '@prisma/client';
 
@@ -30,9 +30,12 @@ function CommentCard({
   if (!comment) return null;
 
   const children = comments.filter((c) => c.replyingToId === commentId);
-  const renderedChildren = children.map((child) => {
+  const renderedChildren = children.map((child, index) => {
     return (
-      <li key={child.id}>
+      <li
+        key={child.id}
+        className={index === children.length - 1 ? styles.last : undefined}
+      >
         <CommentCard
           commentId={child.id}
           comments={comments}
@@ -43,21 +46,32 @@ function CommentCard({
   });
 
   return (
-    <article className={`${styles.comment}`}>
-      <header>
+    <article
+      className={`${styles.comment}`}
+      data-top-level={!Boolean(comment.replyingToId)}
+    >
+      <header className={styles.header}>
         <div className={styles.avatar}>
           <Image
             src={`/user-images/${comment.user.image}.jpg`}
-            alt=""
-            width={40}
-            height={40}
+            alt="User avatar."
+            fill
+            style={{
+              objectFit: 'cover',
+            }}
+            sizes="100%"
           />
         </div>
-        <div className={styles.authorInfo}>
-          <p className={styles.author}>{comment.user.name}</p>
-          <p>@{comment.user.username}</p>
+        <div className={styles.author}>
+          <p className="h4 color-heading">{comment.user.name}</p>
+          <p className={styles.username}>@{comment.user.username}</p>
         </div>
-        <button className={styles.btn} onClick={() => setShowForm(!showForm)}>
+        <button
+          className={`${styles.button} | click-target-helper`}
+          onClick={() => {
+            setShowForm(!showForm);
+          }}
+        >
           Reply
         </button>
       </header>
@@ -75,16 +89,24 @@ function CommentCard({
         <CreateCommentForm
           variant="reply"
           replyingToId={comment.id}
-          parentUserName={
-            comment.parent?.user.username || comment.user.username
-          }
+          parentUserName={comment.user.username}
           requestId={comment.requestId}
           hideForm={() => setShowForm(false)}
           addOptimisticComment={addOptimisticComment}
         />
       )}
 
-      <ul className={styles.replies}>{renderedChildren}</ul>
+      {renderedChildren.length > 0 && (
+        <>
+          <ul
+            className={styles.replies}
+            data-single-reply={renderedChildren.length === 1}
+          >
+            {renderedChildren}
+          </ul>
+          <div className={styles.decoration} />
+        </>
+      )}
     </article>
   );
 }

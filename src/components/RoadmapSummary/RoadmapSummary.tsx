@@ -18,20 +18,23 @@ async function RoadmapSummary() {
   return (
     <article className={`${styles.roadmap} | box`}>
       <header className="flex">
-        <h2>Roadmap</h2>
-        <Link href="/roadmap">
+        <h2 className="color-heading">Roadmap</h2>
+        <Link
+          href="/roadmap"
+          className={`${styles.link} | click-target-helper`}
+        >
           View <span className="visually-hidden">Roadmap</span>
         </Link>
       </header>
 
-      <dl className={styles.roadmap__list}>
-        <dt>Planned</dt>
+      <dl className={styles.info}>
+        <dt className={styles.status}>Planned</dt>
         <dd>{plannedSize}</dd>
 
-        <dt>In-Progress</dt>
+        <dt className={styles.status}>In-Progress</dt>
         <dd>{inProgressSize}</dd>
 
-        <dt>Live</dt>
+        <dt className={styles.status}>Live</dt>
         <dd>{liveSize}</dd>
       </dl>
     </article>

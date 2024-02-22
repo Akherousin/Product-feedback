@@ -34,7 +34,9 @@ function Sort() {
 
   return (
     <div className={styles.sort}>
-      <label id="sort-label">Sort by : &nbsp;</label>
+      <label id="sort-label" className={styles.label}>
+        Sort by : &nbsp;
+      </label>
       <Select
         options={options}
         initialValue={searchParams.get('sort')?.toString()}

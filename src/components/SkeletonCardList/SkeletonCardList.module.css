@@ -1,68 +1,82 @@
-.request {
-  --loader-background-color: hsla(231, 100%, 97%, 1);
-  --loader-highlight-color: hsla(230, 60%, 98%, 1);
-
-  display: grid;
-  grid-template-areas:
-    'title title'
-    'content content'
-    'content2 content2'
-    'category category'
-    'upvotes comments';
-  justify-items: start;
-  row-gap: 0.5rem;
-}
-
-.request > * {
-  background: linear-gradient(
+.skeleton {
+  --loader-background-color: var(--color-bg-2);
+  --loader-highlight-color: var(--color-bg-1);
+  --gradient: linear-gradient(
     90deg,
     var(--loader-background-color) 25%,
     var(--loader-highlight-color) 50%,
     var(--loader-background-color) 75%
   );
-  min-height: 13px;
-  background-size: 200% 100%;
 
+  display: grid;
+  grid-template-areas:
+    'upvotes title comments'
+    'upvotes content comments'
+    'upvotes content2 comments'
+    'upvotes category comments';
+  grid-template-columns: 2.5rem 1fr auto;
+  justify-items: start;
+  row-gap: 0.5rem;
+  column-gap: 2.5rem;
+
+  padding: 28px 32px;
+}
+
+.skeleton:not(:first-of-type) {
+  margin-block-start: 20px;
+}
+
+.skeleton > * {
+  background: var(--gradient);
+  background-size: 200% 100%;
   animation: loading 2s infinite ease-in-out;
 }
 
 .title {
   grid-area: title;
-  width: 45%;
-  min-height: 15px;
+  inline-size: 45%;
+  block-size: 26px;
 }
 
 .category {
   grid-area: category;
   background-color: red;
-  width: 111px;
-  height: 30px;
+  inline-size: 3.125rem;
+  block-size: 30px;
   border-radius: 10px;
 }
 
 .description {
   grid-area: content;
-  width: 100%;
+  inline-size: 100%;
+  block-size: 1rem;
 }
 
 .description--2 {
   grid-area: content2;
-  width: 25%;
+  inline-size: 25%;
+  block-size: 1rem;
 }
 
-.upvotesButton {
+.upvotes {
   grid-area: upvotes;
-  width: 69px;
-  height: 32px;
+  inline-size: 100%;
+  block-size: 3.75rem;
   border-radius: 10px;
 }
 
-.commentsLink {
+.comments {
+  background: transparent;
   grid-area: comments;
-  height: 18px;
-  width: 39px;
-  justify-self: end;
-  align-self: end;
+  align-self: center;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.comments div {
+  background: var(--gradient);
+  inline-size: 1rem;
+  block-size: 1rem;
 }
 
 @keyframes loading {

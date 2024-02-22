@@ -1,63 +1,57 @@
 .roadmap {
-  color: hsla(224, 20%, 49%, 1);
-  margin-block-start: 24px;
+  padding-block: 19px 24px;
+  padding-inline: 24px;
 }
 
-.roadmap > header > h2 {
-  color: #3a4374;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.25px;
+.link:link,
+.link:visited {
+  color: var(--color-action);
+  font-size: var(--font-size-body-3);
+  font-weight: var(--font-weight-semibold);
 }
 
-.roadmap :is(a:link, a:visited) {
-  color: #4661e6;
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration-line: underline;
+.link:hover,
+.link:active {
+  color: var(--color-action-light);
 }
 
-.roadmap :is(a:hover, a:active) {
-  text-decoration: none;
-}
-
-.roadmap__list {
+.info {
   display: grid;
   grid-template-columns: 1fr auto;
-  color: #647196;
-  font-size: 16px;
-  font-weight: 400;
   row-gap: 8px;
-  margin-block-start: 24px;
+
+  margin-block-start: 1.5rem;
 }
 
-.roadmap__list dt {
+.info dd {
+  font-weight: var(--font-weight-bold);
+}
+
+.status {
   display: flex;
   align-items: center;
-  gap: 16px;
 }
 
-.roadmap__list dt::before {
+.status::before {
   content: '';
-  display: block;
-  background: red;
+  display: inline-block;
+
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  margin-inline-end: 1rem;
   border-radius: 50%;
-  height: 8px;
-  width: 8px;
+
+  background: red;
 }
 
-.roadmap__list dt:first-of-type::before {
-  background-color: hsla(14, 83%, 74%, 1);
+.status:first-of-type::before {
+  background-color: var(--color-accent-2);
 }
 
-.roadmap__list dt:nth-of-type(2)::before {
-  background-color: hsla(282, 83%, 52%, 1);
+.status:nth-of-type(2)::before {
+  background-color: var(--color-accent-1);
 }
 
-.roadmap__list dt:last-of-type::before {
-  background-color: hsla(204, 94%, 68%, 1);
-}
-
-.roadmap__list dd {
-  font-weight: 700;
+.status:last-of-type::before {
+  background-color: var(--color-accent-3);
 }

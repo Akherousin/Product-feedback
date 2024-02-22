@@ -1,0 +1,38 @@
+.actions {
+  display: grid;
+  grid-template-columns: minmax(9.75rem, auto) minmax(min-content, 255px) minmax(
+      max-content,
+      1fr
+    );
+  gap: 2.375rem;
+
+  padding-block: 14px;
+  padding-inline: 24px 16px;
+
+  background-color: var(--color-bg-3);
+  color: var(--color-white);
+}
+
+.actions > a {
+  max-inline-size: 9.875rem;
+  grid-column: -2 / -1;
+  justify-self: end;
+}
+
+@media screen and (max-width: 42.25em) {
+  .actions {
+    grid-template-columns: minmax(min-content, 255px) minmax(max-content, 1fr);
+    padding-inline: 24px;
+  }
+
+  .actions > p:first-of-type {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 32.1875em) {
+  .actions {
+    border-radius: 0;
+    gap: 0.5rem;
+  }
+}

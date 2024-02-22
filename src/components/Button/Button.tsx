@@ -19,7 +19,9 @@ function Button({
   as = 'button',
   ...rest
 }: ButtonProps) {
-  const classes = `${className ? className : ''} ${styles.button}`.trim();
+  const classes = `${className ? className : ''} ${
+    styles.button
+  } | click-target-helper`.trim();
 
   if (as === 'link') {
     return (

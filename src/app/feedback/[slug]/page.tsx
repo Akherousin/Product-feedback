@@ -7,7 +7,6 @@ import { notFound } from 'next/navigation';
 import CommentList from '@/components/CommentList/CommentList';
 import GoBackLink from '@/components/GoBackLink/GoBackLink';
 import { Suspense } from 'react';
-import SkeletonCommentList from '@/components/SkeletonCommentList';
 
 interface RequestPageProps {
   params: {
@@ -20,60 +19,33 @@ export default async function RequestPage({ params }: RequestPageProps) {
   if (!request) notFound();
 
   return (
-    <>
-      <header className={styles.header}>
-        <div className="container flex">
-          <GoBackLink variant="plain" />
+    <div className={styles.wrapper}>
+      <header className={`${styles.header} | flex`}>
+        <GoBackLink variant="plain" />
 
-          <Button
-            variant="blue"
-            as="link"
-            href={paths.showEditPage(params.slug)}
-          >
-            Edit feedback
-          </Button>
-        </div>
+        <Button variant="blue" as="link" href={paths.showEditPage(params.slug)}>
+          Edit feedback
+        </Button>
       </header>
       <main>
-        <div className="container">
-          <RequestCard
-            id={request.id}
-            title={request.title}
-            level={1}
-            slug={request.slug}
-            description={request.description}
-            category={request.category}
-            upvotes={request.upvotes}
-            comments={request.comments.length}
-          />
-          <section>
-            <Suspense fallback={null}>
-              <CommentList requestId={request.id} />
-            </Suspense>
-            {/* <SkeletonCommentList /> */}
-          </section>
-        </div>
+        <RequestCard
+          id={request.id}
+          title={request.title}
+          level={1}
+          slug={request.slug}
+          status={request.status}
+          description={request.description}
+          category={request.category}
+          upvotes={request.upvotes}
+          comments={request.comments.length}
+          asLink={false}
+        />
+        <section className={styles.comments}>
+          <Suspense fallback={null}>
+            <CommentList requestId={request.id} />
+          </Suspense>
+        </section>
       </main>
-    </>
-  );
-}
-
-function ArrowLeftSvg() {
-  return (
-    <svg
-      width="7"
-      height="10"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path
-        d="M6 9L2 5l4-4"
-        stroke="#4661E6"
-        strokeWidth="2"
-        fill="none"
-        fillRule="evenodd"
-      />
-    </svg>
+    </div>
   );
 }

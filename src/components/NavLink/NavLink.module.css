@@ -1,15 +1,27 @@
 .navlink:link,
 .navlink:visited {
-  padding-inline: 16px;
-  padding-block: 6px;
+  display: block;
 
-  color: hsla(230, 76%, 59%, 1);
-  font-size: 13px;
-  font-weight: 600;
+  min-inline-size: 3rem;
+  padding-inline: 16px;
+  padding-block: 5px 6px;
+  border-radius: 10px;
+
+  background-color: var(--color-bg-2);
+  color: var(--color-action);
+
   text-decoration: none;
+  font-size: var(--font-size-body-3);
+  line-height: 1.1875rem;
+  font-weight: 600;
+}
+
+.navlink:hover,
+.navlink:active {
+  background-color: hsl(230, 100%, 91%);
 }
 
 .navlink[aria-current='page'] {
-  background-color: hsla(230, 76%, 59%, 1);
-  color: hsla(0, 0%, 100%, 1);
+  background-color: var(--color-action);
+  color: var(--color-white);
 }

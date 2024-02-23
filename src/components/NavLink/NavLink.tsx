@@ -3,6 +3,7 @@
 import Link, { LinkProps } from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './NavLink.module.css';
+import paths from '@/paths';
 
 type NavLinkProps = LinkProps & React.ComponentPropsWithoutRef<'a'>;
 
@@ -13,7 +14,7 @@ export function NavLink({ href, className, children, ...rest }: NavLinkProps) {
   return (
     <Link
       {...rest}
-      href={href}
+      href={isCurrent ? paths.home() : href}
       className={`${className ? className : ''} ${
         styles.navlink
       } | click-target-helper`}

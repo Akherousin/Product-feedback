@@ -21,9 +21,9 @@ const paths = {
     return `/feedback/${slug}/edit`;
   },
 
-  //   postShow(topicSlug: string, postId: string) {
-  //     return `/topics/${topicSlug}/posts/${postId}`;
-  //   },
+  showRoadmapPage() {
+    return '/roadmap';
+  },
 };
 
 export default paths;

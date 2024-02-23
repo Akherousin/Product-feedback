@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import styles from './RoadmapSummary.module.css';
 import { fetchAllRequests } from '@/db/queries/requests';
+import paths from '@/paths';
 
 async function RoadmapSummary() {
   const requests = await fetchAllRequests();
@@ -20,7 +21,7 @@ async function RoadmapSummary() {
       <header className="flex">
         <h2 className="color-heading">Roadmap</h2>
         <Link
-          href="/roadmap"
+          href={paths.showRoadmapPage()}
           className={`${styles.link} | click-target-helper`}
         >
           View <span className="visually-hidden">Roadmap</span>

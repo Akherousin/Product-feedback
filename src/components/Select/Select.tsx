@@ -178,6 +178,11 @@ const Select = ({
                         selectOption(index);
                         if (onChange) onChange(e);
                       }}
+                      onClick={() => {
+                        if (selectedValue === optionValue) {
+                          selectOption(index);
+                        }
+                      }}
                       tabIndex={-1}
                     />
                     {optionLabel}

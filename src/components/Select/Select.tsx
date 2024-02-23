@@ -12,7 +12,7 @@ interface Option {
 interface SelectProps {
   initialValue?: string;
   options: Option[];
-  onChange?: (e: ChangeEvent<HTMLInputElement>, ...args: any[]) => void;
+  onChange?: (...args: any[]) => void;
   name?: string;
   labelledby?: string;
   describedby?: string;
@@ -92,6 +92,10 @@ const Select = ({
       toggleOpen();
     }
   };
+
+  useEffect(() => {
+    if (onChange) onChange(selectedValue);
+  }, [selectedOptionId, onChange, selectedValue]);
 
   const handleArrowDownKey = () => {
     if (!isOpen) {
@@ -174,9 +178,8 @@ const Select = ({
                       type="radio"
                       value={optionValue}
                       checked={selectedValue === optionValue}
-                      onChange={(e) => {
+                      onChange={() => {
                         selectOption(index);
-                        if (onChange) onChange(e);
                       }}
                       onClick={() => {
                         if (selectedValue === optionValue) {

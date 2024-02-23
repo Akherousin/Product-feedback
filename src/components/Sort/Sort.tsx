@@ -20,9 +20,8 @@ function Sort() {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (sortBy: string) => {
     const params = new URLSearchParams(searchParams);
-    const sortBy = e.target.value;
 
     if (sortBy) {
       params.set('sort', sortBy);

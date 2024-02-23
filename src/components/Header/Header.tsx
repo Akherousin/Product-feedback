@@ -45,6 +45,14 @@ function Header({ roadmap }: HeaderProps) {
         delete body.dataset.menuIsOpen;
       }
     }
+
+    return () => {
+      main?.removeAttribute('inert');
+
+      if (body) {
+        delete body.dataset.menuIsOpen;
+      }
+    };
   }, [isOpen]);
 
   useTrapFocus(navRef, isOpen);

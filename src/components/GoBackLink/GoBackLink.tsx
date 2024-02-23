@@ -1,5 +1,6 @@
 'use client';
 
+import paths from '@/paths';
 import Button from '../Button';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
@@ -27,6 +28,7 @@ function GoBackLink({ variant }: GoBackLinkProps) {
         } else {
           router.back();
         }
+        router.push(paths.home());
       }}
     >
       <ArrowLeftSvg variant={variant} />

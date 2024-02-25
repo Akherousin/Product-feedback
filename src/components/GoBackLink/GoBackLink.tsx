@@ -3,7 +3,8 @@
 import paths from '@/paths';
 import Button from '../Button';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
+import { useSessionStorage } from '@uidotdev/usehooks';
 
 interface GoBackLinkProps {
   variant: 'dark-grey' | 'plain';
@@ -12,6 +13,10 @@ interface GoBackLinkProps {
 function GoBackLink({ variant }: GoBackLinkProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  let isFirstVisit = false;
+  if (typeof window !== 'undefined') {
+    isFirstVisit = sessionStorage.getItem('isFirstVisit') === null;
+  }
   const goToHomePage = searchParams.get('updated') === 'true';
 
   return (
@@ -21,31 +26,31 @@ function GoBackLink({ variant }: GoBackLinkProps) {
       variant={variant}
       onClick={(e) => {
         e.preventDefault();
+        alert(isFirstVisit);
+        sessionStorage.setItem('isFirstVisit', 'false');
+        if (isFirstVisit) return router.push(paths.home());
         if (goToHomePage) {
-          router.back();
-          router.back();
-          router.back();
+          return router.push(paths.home());
         } else {
-          router.back();
+          return router.back();
         }
-        router.push(paths.home());
       }}
     >
       <ArrowLeftSvg variant={variant} />
-      <span>Go Back</span>
+      <span data-is-first={isFirstVisit}>Go Back</span>
     </Button>
   );
 }
 
-function SuspensedGoBackLink({ variant }: GoBackLinkProps) {
+function SuspensedGoBackLink({ ...delegated }: GoBackLinkProps) {
   return (
     <Suspense fallback={null}>
-      <GoBackLink variant={variant} />
+      <GoBackLink {...delegated} />
     </Suspense>
   );
 }
 
-function ArrowLeftSvg({ variant }: GoBackLinkProps) {
+function ArrowLeftSvg({ variant }: Pick<GoBackLinkProps, 'variant'>) {
   return (
     <svg
       width="7"

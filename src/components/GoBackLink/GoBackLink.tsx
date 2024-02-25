@@ -26,7 +26,6 @@ function GoBackLink({ variant }: GoBackLinkProps) {
       variant={variant}
       onClick={(e) => {
         e.preventDefault();
-        alert(isFirstVisit);
         sessionStorage.setItem('isFirstVisit', 'false');
         if (isFirstVisit) return router.push(paths.home());
         if (goToHomePage) {

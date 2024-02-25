@@ -3,8 +3,7 @@
 import paths from '@/paths';
 import Button from '../Button';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useState } from 'react';
-import { useSessionStorage } from '@uidotdev/usehooks';
+import { Suspense } from 'react';
 
 interface GoBackLinkProps {
   variant: 'dark-grey' | 'plain';

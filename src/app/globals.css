@@ -172,6 +172,11 @@ a:active {
   transition: all 150ms ease-in;
 }
 
+:focus-visible {
+  outline: 0.375rem double black;
+  box-shadow: 0 0 0 0.25rem white;
+}
+
 /* Utilities */
 
 .visually-hidden:not(:focus):not(:active) {

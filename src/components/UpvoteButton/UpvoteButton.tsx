@@ -1,6 +1,6 @@
 'use client';
 
-import { useOptimistic, useState } from 'react';
+import { useState } from 'react';
 import styles from './UpvoteButton.module.css';
 import { decrementUpvotes, incrementUpvotes } from '@/actions';
 import CURRENT_USER from '@/currentUser';

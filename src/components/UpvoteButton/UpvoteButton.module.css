@@ -20,6 +20,12 @@
   background-color: hsl(230, 100%, 91%);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .button:hover > svg {
+    animation: jump 500ms ease-out;
+  }
+}
+
 .button[data-upvoted='true'] {
   background-color: var(--color-action);
   color: var(--color-white);
@@ -27,4 +33,18 @@
 
 .button[data-upvoted='true'] path {
   stroke: currentColor;
+}
+
+@keyframes jump {
+  from {
+    transform: translateY(0%);
+  }
+
+  50% {
+    transform: translateY(-50%);
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
 }

@@ -14,6 +14,14 @@ interface RequestPageProps {
   };
 }
 
+export async function generateMetadata({ params }: RequestPageProps) {
+  const request = await fetchRequest(params.slug);
+
+  return {
+    title: `${request?.title} - Frontend Mentor`,
+  };
+}
+
 export default async function RequestPage({ params }: RequestPageProps) {
   const request = await fetchRequest(params.slug);
   if (!request) notFound();

@@ -5,6 +5,11 @@ import TabList from '@/components/TabList';
 import { fetchAllRequests } from '@/db/queries/requests';
 import GoBackLink from '@/components/GoBackLink';
 import Roadmap from '@/components/Roadmap';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Roadmap - Frontend Mentor',
+};
 
 export default async function RoadmapPage({
   searchParams,

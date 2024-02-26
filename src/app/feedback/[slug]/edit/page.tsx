@@ -11,6 +11,14 @@ interface EditRequestPageProps {
   };
 }
 
+export async function generateMetadata({ params }: EditRequestPageProps) {
+  const request = await fetchRequest(params.slug);
+
+  return {
+    title: `Edit ${request?.title} - Frontend Mentor`,
+  };
+}
+
 export default async function EditRequestPage({
   params,
 }: EditRequestPageProps) {

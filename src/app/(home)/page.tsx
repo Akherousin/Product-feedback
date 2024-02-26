@@ -3,7 +3,6 @@ import RequestList from '@/components/RequestList';
 import { SortValues } from '@/components/Sort/Sort';
 import { fetchAllRequests } from '@/db/queries/requests';
 import ActionsSection from '@/components/ActionsSection/ActionsSection';
-import SkeletonCardList from '@/components/SkeletonCardList';
 
 export default async function Home({
   searchParams,

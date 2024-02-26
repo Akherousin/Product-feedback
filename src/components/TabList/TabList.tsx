@@ -7,6 +7,7 @@ import RequestCard from '../RequestCard';
 import { RequestWithCommentCount } from '@/db/queries/requests';
 
 import { useRouter, usePathname } from 'next/navigation';
+import { LayoutGroup, motion } from 'framer-motion';
 
 interface TabListProps {
   requests: RequestWithCommentCount[];
@@ -78,49 +79,53 @@ function TabList({ requests, defaultTab }: TabListProps) {
 
   return (
     <div role="tablist" className={styles.tablist} ref={ref}>
-      <button
-        className={styles.tab}
-        role="tab"
-        aria-controls="tabpanel"
-        aria-selected={selectedTab == 0}
-        tabIndex={selectedTab === 0 ? 0 : -1}
-        onClick={() => {
-          setSelectedTab(0);
-          setSearchParams('0');
-        }}
-        data-status="planned"
-      >
-        Planned({plannedSize})
-      </button>
-      <button
-        className={styles.tab}
-        role="tab"
-        aria-controls="tabpanel"
-        aria-selected={selectedTab === 1}
-        tabIndex={selectedTab === 1 ? 0 : -1}
-        onClick={() => {
-          setSelectedTab(1);
-          setSearchParams('1');
-        }}
-        data-status="progress"
-      >
-        In-Progress({inProgressSize})
-      </button>
-      <button
-        className={styles.tab}
-        role="tab"
-        aria-controls="tabpanel"
-        aria-selected={selectedTab === 2}
-        tabIndex={selectedTab === 2 ? 0 : -1}
-        onClick={() => {
-          setSelectedTab(2);
-          setSearchParams('2');
-        }}
-        data-status="live"
-      >
-        Live({liveSize})
-      </button>
-
+      <LayoutGroup>
+        <button
+          className={styles.tab}
+          role="tab"
+          aria-controls="tabpanel"
+          aria-selected={selectedTab == 0}
+          tabIndex={selectedTab === 0 ? 0 : -1}
+          onClick={() => {
+            setSelectedTab(0);
+            setSearchParams('0');
+          }}
+          data-status="planned"
+        >
+          Planned({plannedSize})
+          {selectedTab == 0 && <motion.span layoutId="tab-decoration" />}
+        </button>
+        <button
+          className={styles.tab}
+          role="tab"
+          aria-controls="tabpanel"
+          aria-selected={selectedTab === 1}
+          tabIndex={selectedTab === 1 ? 0 : -1}
+          onClick={() => {
+            setSelectedTab(1);
+            setSearchParams('1');
+          }}
+          data-status="progress"
+        >
+          In-Progress({inProgressSize})
+          {selectedTab == 1 && <motion.span layoutId="tab-decoration" />}
+        </button>
+        <button
+          className={styles.tab}
+          role="tab"
+          aria-controls="tabpanel"
+          aria-selected={selectedTab === 2}
+          tabIndex={selectedTab === 2 ? 0 : -1}
+          onClick={() => {
+            setSelectedTab(2);
+            setSearchParams('2');
+          }}
+          data-status="live"
+        >
+          Live({liveSize})
+          {selectedTab == 2 && <motion.span layoutId="tab-decoration" />}
+        </button>
+      </LayoutGroup>
       <div role="tabpanel" id="tabpanel" className={styles.tabpanel}>
         <h2 className={styles.tabpanel__title}>
           {selectedTab === 0 && 'Planned'}

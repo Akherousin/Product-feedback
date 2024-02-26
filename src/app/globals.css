@@ -157,6 +157,21 @@ h3,
 h4 {
   color: var(--color-heading);
 }
+
+button,
+a {
+  /* exit animations */
+  transition: all 300ms ease-out;
+}
+
+button:hover,
+button:focus,
+a:hover,
+a:active {
+  /* in animations */
+  transition: all 150ms ease-in;
+}
+
 /* Utilities */
 
 .visually-hidden:not(:focus):not(:active) {

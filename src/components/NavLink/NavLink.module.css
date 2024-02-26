@@ -1,5 +1,6 @@
 .navlink:link,
-.navlink:visited {
+.navlink:visited,
+.backdrop {
   display: block;
 
   min-inline-size: 3rem;
@@ -21,7 +22,19 @@
   background-color: hsl(230, 100%, 91%);
 }
 
-.navlink[aria-current='page'] {
+.navlink[aria-current='page'],
+.backdrop {
   background-color: var(--color-action);
   color: var(--color-white);
+}
+
+.navlink[aria-current='page'] {
+  transition: all 0.5s;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
 }

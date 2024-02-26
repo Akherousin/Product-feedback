@@ -21,24 +21,25 @@
   opacity: 1;
 }
 
-.tab[aria-selected='true']::after {
-  content: '';
-  height: 4px;
-  width: 100%;
+.tab > span {
   position: absolute;
+  display: block;
   bottom: 0;
   right: 0;
+  left: 0;
+  block-size: 4px;
+  inline-size: 100%;
 }
 
-.tab[data-status='planned']::after {
+.tab[data-status='planned'] > span {
   background-color: var(--color-accent-2);
 }
 
-.tab[data-status='live']::after {
+.tab[data-status='live'] > span {
   background-color: var(--color-accent-3);
 }
 
-.tab[data-status='progress']::after {
+.tab[data-status='progress'] > span {
   background-color: var(--color-accent-1);
 }
 

@@ -1,8 +1,9 @@
 'use client';
 
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './Select.module.css';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside.hook';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Option {
   label: string;
@@ -153,49 +154,74 @@ const Select = ({
           {selectedLabel}
           <ArrowDownSvg />
         </button>
-        {isOpen && (
-          <ul
-            role="listbox"
-            className={`${styles.dropdown} ${
-              dropdownClassName ? dropdownClassName : ''
-            } | box`}
-            id="select-dropdown"
-            tabIndex={-1}
-          >
-            {options.map(
-              ({ value: optionValue, label: optionLabel }, index) => (
-                <li
-                  key={optionValue}
-                  role="option"
-                  aria-selected={optionValue === selectedValue}
-                  id={`option-${index}`}
-                  className={styles.option}
-                  data-active={index === highlightedOptionIndex}
-                  onMouseOver={() => setHighlightedOptionIndex(index)}
-                >
-                  <label className="flex">
-                    <input
-                      type="radio"
-                      value={optionValue}
-                      checked={selectedValue === optionValue}
-                      onChange={() => {
-                        selectOption(index);
-                      }}
-                      onClick={() => {
-                        if (selectedValue === optionValue) {
+        <AnimatePresence>
+          {isOpen && (
+            <motion.ul
+              role="listbox"
+              className={`${styles.dropdown} ${
+                dropdownClassName ? dropdownClassName : ''
+              } | box`}
+              id="select-dropdown"
+              tabIndex={-1}
+              style={{ overflow: 'hidden' }}
+              initial={{
+                height: 0,
+                opacity: 0,
+              }}
+              animate={{
+                height: 'auto',
+                opacity: 1,
+                transition: {
+                  type: 'spring',
+                  bounce: 0,
+                  restDelta: 0.01,
+                  duration: 0.25,
+                },
+              }}
+              exit={{
+                height: 0,
+                opacity: 0,
+                transition: {
+                  type: 'spring',
+                  duration: 0.4,
+                },
+              }}
+            >
+              {options.map(
+                ({ value: optionValue, label: optionLabel }, index) => (
+                  <li
+                    key={optionValue}
+                    role="option"
+                    aria-selected={optionValue === selectedValue}
+                    id={`option-${index}`}
+                    className={styles.option}
+                    data-active={index === highlightedOptionIndex}
+                    onMouseOver={() => setHighlightedOptionIndex(index)}
+                  >
+                    <label className="flex">
+                      <input
+                        type="radio"
+                        value={optionValue}
+                        checked={selectedValue === optionValue}
+                        onChange={() => {
                           selectOption(index);
-                        }
-                      }}
-                      tabIndex={-1}
-                    />
-                    {optionLabel}
-                    {optionValue === selectedValue ? <CheckSvg /> : null}
-                  </label>
-                </li>
-              )
-            )}
-          </ul>
-        )}
+                        }}
+                        onClick={() => {
+                          if (selectedValue === optionValue) {
+                            selectOption(index);
+                          }
+                        }}
+                        tabIndex={-1}
+                      />
+                      {optionLabel}
+                      {optionValue === selectedValue ? <CheckSvg /> : null}
+                    </label>
+                  </li>
+                )
+              )}
+            </motion.ul>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );

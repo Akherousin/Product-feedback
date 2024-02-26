@@ -7,7 +7,7 @@ export default function HomeLoading() {
     <>
       <ActionsSection suggestions={0} loading={true} />
       <section className={styles.list}>
-        <SkeletonCardList size={3} />;
+        <SkeletonCardList size={5} />;
       </section>
     </>
   );

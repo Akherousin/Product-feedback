@@ -58,6 +58,10 @@
   list-style: none;
 }
 
+.links > li {
+  position: relative;
+}
+
 .nav--mobile {
   display: none;
 }
@@ -134,6 +138,5 @@
     block-size: 100vh;
     inline-size: 100vw;
     background: #000;
-    opacity: 0.5;
   }
 }

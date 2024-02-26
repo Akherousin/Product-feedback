@@ -5,6 +5,7 @@
 
 .dropdown {
   position: absolute;
+
   top: calc(100% + 1rem);
   left: 0;
   right: 0;
@@ -19,6 +20,7 @@
 
   list-style: none;
   z-index: 2;
+  transition: color 300ms;
 }
 
 .dropdown input {
@@ -35,4 +37,5 @@
 
 .option[data-active='true'] {
   color: var(--color-accent-1);
+  transition: color 150ms;
 }

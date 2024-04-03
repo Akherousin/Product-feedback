@@ -18,7 +18,9 @@ export default function RootLayout({
   return (
     <RespectMotionPreferences>
       <html lang="en">
-        <body className={jost.className}>{children}</body>
+        <body className={jost.className}>
+          <div>{children}</div>
+        </body>
       </html>
     </RespectMotionPreferences>
   );

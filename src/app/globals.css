@@ -112,7 +112,10 @@ body {
 
 body[data-menu-is-open='true'] {
   block-size: 100vh;
-  overflow-y: hidden;
+}
+
+body[data-menu-is-open='true'] > div {
+  overflow: hidden;
 }
 
 button {
